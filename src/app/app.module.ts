@@ -12,6 +12,7 @@ import {ButtonModule} from "primeng/button";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {InputTextModule} from "primeng/inputtext";
 import {HttpClientModule} from "@angular/common/http";
+import {PasswordModule} from 'primeng/password';
 
 
 @NgModule({
@@ -30,16 +31,12 @@ import {HttpClientModule} from "@angular/common/http";
     InputTextModule,
     InputTextareaModule,
     TableModule,
-
-
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
+    PasswordModule
   ],
   providers: [],
-  // exports: [
-  //   TableModule
-  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

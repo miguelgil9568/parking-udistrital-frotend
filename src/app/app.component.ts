@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   cars: Car[];
   cols: any[];
   username = '';
+  password = '';
 
   ngOnInit() {
 

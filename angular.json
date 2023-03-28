@@ -28,9 +28,27 @@
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+//              "node_modules/primeng/resources/themes/luna-amber/theme.css",
+//              "node_modules/primeng/resources/themes/luna-blue/theme.css",
+//              "node_modules/primeng/resources/themes/luna-green/theme.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/neon/assets/js/jquery-1.11.3.min.js",
+              "src/assets/neon/assets/js/gsap/TweenMax.min.js",
+              "src/assets/neon/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
+              "src/assets/neon/assets/js/bootstrap.js",
+              "src/assets/neon/assets/js/joinable.js",
+              "src/assets/neon/assets/js/resizeable.js",
+              "src/assets/neon/assets/js/neon-api.js",
+              "src/assets/neon/assets/js/jquery.validate.min.js",
+              "src/assets/neon/assets/js/neon-login.js",
+              "src/assets/neon/assets/js/toastr.js",
+              "src/assets/neon/assets/js/neon-custom.js",
+              "src/assets/neon/assets/js/neon-demo.js",
+              "src/assets/neon/assets/js/neon-notificaciones.js",
+              "node_modules/chart.js/dist/Chart.js"
+            ]
           },
           "configurations": {
             "production": {
