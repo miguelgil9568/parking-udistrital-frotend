@@ -1,26 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {TableModule} from 'primeng/table';
-import {Car} from '../model/cars';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'parking-udistrital-frontend';
-  cars: Car[];
-  cols: any[];
-  username = '';
-  password = '';
 
-  ngOnInit() {
-
-    this.cols = [
-      { field: 'vin', header: 'Vin' },
-      { field: 'year', header: 'Year' },
-      { field: 'brand', header: 'Brand' },
-      { field: 'color', header: 'Color' }
-    ];
-  }
 }
