@@ -1,0 +1,45 @@
+<div class=" d-flex justify-content-center align-items-center vh-100" >
+  <div class="p-5 rounded-5 text-secondary shadow" style="width: 25rem">
+    <form [formGroup]="formRegister">
+      <div class="text-center fs-1 fw-bold">Registro</div>
+      <div class="form-row ">
+        <div class="form-group col-md-12">
+          <label>Nombre</label>
+          <input id="name" [ngClass]="formRegister.controls['name'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                 formControlName="user" placeholder="Username" pInputText >
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-md-12">
+          <label>Contraseña</label>
+          <input pPassword placeholder="Contraseña" [ngClass]="formRegister.controls['password'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'"
+                 formControlName="password" type="password"/>
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-md-12">
+          <label>Codigo institucional</label>
+          <input [ngClass]="formRegister.controls['code'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                  formControlName="code" placeholder="Codigo" pInputText >
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-md-12">
+          <label>Telefono de contacto</label>
+          <input [ngClass]="formRegister.controls['phoneNumber'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                  formControlName="phoneNumber" placeholder="Telefono de contacto" pInputText>
+        </div>
+      </div>
+      <div class="form-row ">
+        <div class="form-group col-md-12">
+          <label>Correo institucional</label>
+          <input [ngClass]="formRegister.controls['email'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                  formControlName="email" placeholder="Correo electronico" pInputText >
+        </div>
+      </div>
+      <div class="d-flex justify-content-around mt-2 ">
+        <button pButton  label="Registrarse" (click)="register()" [disabled]="formRegister.invalid" ></button>
+      </div>
+    </form>
+  </div>
+</div>

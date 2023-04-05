@@ -46,8 +46,7 @@
               "src/assets/neon/assets/js/toastr.js",
               "src/assets/neon/assets/js/neon-custom.js",
               "src/assets/neon/assets/js/neon-demo.js",
-              "src/assets/neon/assets/js/neon-notificaciones.js",
-              "node_modules/chart.js/dist/Chart.js"
+              "src/assets/neon/assets/js/neon-notificaciones.js"
             ]
           },
           "configurations": {
@@ -84,7 +83,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "parking-udistrital-frontend:build"
+            "browserTarget": "parking-udistrital-frontend:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -4,19 +4,20 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { EndPointsConstants } from '../util/endpointsConstants-contast';
 import {Auth} from '../model/Auth';
+import {Usuario} from '../model/Usuario';
 
 @Injectable({
   providedIn: 'any'
 })
-export class LoginService {
+export class UsuarioService {
 
   ingreso = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) {
   }
 
-  login(authData: Auth): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/login', authData).pipe(
+  findAll(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(EndPointsConstants.URL_ENDPOINT + 'api/user').pipe(
       tap(
         success => { return success },
         error => {

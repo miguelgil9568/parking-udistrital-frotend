@@ -11,17 +11,30 @@ import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {InputTextModule} from "primeng/inputtext";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {PasswordModule} from 'primeng/password';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+import { MenuModule } from 'primeng/menu';
+import {MenubarModule} from 'primeng';
+import {FullCalendarModule} from 'primeng/fullcalendar';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TokenInterceptorService } from 'src/util/token-interceptor.interceptor';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
+    UsuarioComponent,
+    DashboardComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +55,16 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    PasswordModule
+    PasswordModule,
+    MenuModule,
+    MenubarModule,
+    FullCalendarModule,
+    AppRoutingModule,
+
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

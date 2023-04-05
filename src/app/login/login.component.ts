@@ -3,6 +3,7 @@ import {Car} from '../../class/Cars';
 import { Auth } from 'src/model/Auth';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {LoginService} from '../../service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,13 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   formLogin: FormGroup;
+  viewLogin= false;
+  viewHome= true;
+  item: any;
 
   constructor( private formBuilder: FormBuilder,
-               private loginService: LoginService) {
+               private loginService: LoginService,
+               private router: Router) {
   }
 
   ngOnInit() {
@@ -42,10 +47,19 @@ export class LoginComponent implements OnInit {
   public login(){
     console.log('ingreso');
     this.auth = this.formLogin.value;
-    console.log('ingreso');
     this.loginService.login(this.auth).subscribe(result =>{
-      result;
+      this.router.navigate(['/app/dashboard']);
+      sessionStorage.setItem('token', result.token);
+      this.viewHome= false;
+      this.viewLogin= true;
     });
+  }
+
+  cambio(){
+    console.log('ingreso');
+    this.viewHome= false;
+    this.viewLogin= true;
+    this.router.navigate(['/sign']);
   }
 
 }
