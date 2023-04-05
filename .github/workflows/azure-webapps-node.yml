@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - Parking-Frontend
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'Parking-Frontend'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_18682b59ddd149979a6ad255d0277339 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_55e710454b6e466292468a3238ff2816 }}
           package: .
