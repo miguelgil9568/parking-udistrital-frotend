@@ -1,0 +1,25 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+.eyder {
+    color: green;
+    background: yellow;
+}
+
+.table > thead > tr > th {
+    color: #3c3838;
+    border: 1px solid #c8c8c8;
+    font-weight: bold;
+}
+
+.table > tbody > tr > td {
+    color: #3c3838;
+    border: 1px solid #c8c8c8;
+}
+
+.table {
+    border: 1px solid #c8c8c8;
+}

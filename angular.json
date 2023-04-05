@@ -1,0 +1,146 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "parking-udistrital-frontend": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/parking-udistrital-frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+//              "node_modules/primeng/resources/themes/luna-amber/theme.css",
+//              "node_modules/primeng/resources/themes/luna-blue/theme.css",
+//              "node_modules/primeng/resources/themes/luna-green/theme.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/neon/assets/js/jquery-1.11.3.min.js",
+              "src/assets/neon/assets/js/gsap/TweenMax.min.js",
+              "src/assets/neon/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
+              "src/assets/neon/assets/js/bootstrap.js",
+              "src/assets/neon/assets/js/joinable.js",
+              "src/assets/neon/assets/js/resizeable.js",
+              "src/assets/neon/assets/js/neon-api.js",
+              "src/assets/neon/assets/js/jquery.validate.min.js",
+              "src/assets/neon/assets/js/neon-login.js",
+              "src/assets/neon/assets/js/toastr.js",
+              "src/assets/neon/assets/js/neon-custom.js",
+              "src/assets/neon/assets/js/neon-demo.js",
+              "src/assets/neon/assets/js/neon-notificaciones.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "parking-udistrital-frontend:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "parking-udistrital-frontend:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "parking-udistrital-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "parking-udistrital-frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "parking-udistrital-frontend:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "parking-udistrital-frontend"
+}

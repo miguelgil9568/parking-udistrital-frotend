@@ -1,0 +1,27 @@
+<p-table [value]="usuarios">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Tipo de usuario</th>
+      <th>Codigo</th>
+      <th>Telefono</th>
+      <th>Operacion</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-usuario>
+    <tr>
+      <td>{{usuario.name}}</td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.type}}</td>
+      <td>{{usuario.code}}</td>
+      <td>{{usuario.phoneNumber}}</td>
+      <td class="align-content-center">
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+  </ng-template>
+</p-table>
