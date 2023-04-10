@@ -17,7 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuModule } from 'primeng/menu';
-import {MenubarModule, MessageModule} from 'primeng';
+import {ListboxModule, MenubarModule, MessageModule, SelectButtonModule} from 'primeng';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -69,6 +69,8 @@ import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar
     MenubarModule,
     FullCalendarModule,
     AppRoutingModule,
+    SelectButtonModule,
+    ListboxModule,
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter
