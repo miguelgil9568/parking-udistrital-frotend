@@ -17,7 +17,7 @@
       <td>{{usuario.code}}</td>
       <td>{{usuario.phoneNumber}}</td>
       <td class="align-content-center">
-        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" [routerLink]=" [{ outlets: { rdash: ['modificar-usuario'] } }]"></button>
         <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"></button>
       </td>
     </tr>

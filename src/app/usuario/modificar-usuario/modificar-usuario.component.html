@@ -1,0 +1,76 @@
+<div class="container tab-content" id="nav-tabContent" style="border: none;">
+    <h2>{{labelAccion}} usuario</h2>
+    <form [formGroup]="crearGestor">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="name"  >Nombre *</label>
+          <input id="name" [ngClass]="crearGestor.controls['name'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                 formControlName="name" placeholder="name" pInputText >
+        </div>
+        <div class="form-group col-md-6">
+          <label for="code"  >Codigo institucional *</label>
+          <input id="code" [ngClass]="crearGestor.controls['code'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                 formControlName="code" placeholder="Codigo institucional" pInputText >
+        </div>
+      </div>
+<!--      <div class="row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--          <label for="name"  >Nombre *</label>-->
+<!--          <input id="name" [ngClass]="crearGestor.controls['name'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"-->
+<!--                 formControlName="name" placeholder="nombre completo" pInputText >-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--          <label for="code"  >Codigo institucional *</label>-->
+<!--          <input id="code" [ngClass]="crearGestor.controls['code'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"-->
+<!--                 formControlName="code" placeholder="Codigo institucional" pInputText >-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="name"  >Telefono de contacto *</label>
+          <input id="name" [ngClass]="crearGestor.controls['phoneNumber'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                 formControlName="phoneNumber" placeholder="Telefono de contacto" pInputText >
+        </div>
+        <div class="form-group col-md-6">
+          <label for="code"  >Correo institucional *</label>
+          <input id="code" [ngClass]="crearGestor.controls['email'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+                 formControlName="email" placeholder="Correo institucional" pInputText >
+        </div>
+      </div>
+
+      <br>
+
+      <p-table [value]="vehiculos">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Codigo</th>
+            <th>Marca</th>
+            <th>Placa</th>
+            <th>Color</th>
+            <th>Fecha de creacion</th>
+<!--            <th>Operacion</th>-->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-vehiculo>
+          <tr>
+            <td>{{vehiculo.codeUser}}</td>
+            <td>{{vehiculo.make}}</td>
+            <td>{{vehiculo.placa}}</td>
+            <td>{{vehiculo.color}}</td>
+            <td>{{vehiculo.createAt}}</td>
+<!--            <td class="align-content-center">-->
+<!--              <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" [routerLink]=" [{ outlets: { rdash: ['modificar-usuario'] } }]"></button>-->
+<!--              <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"></button>-->
+<!--            </td>-->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+        </ng-template>
+      </p-table>
+      <br>
+      <div class=" mx-auto text-end">
+        <button class="btn btn-round btn-middle mx-2"  [routerLink]="[{ outlets: { rdash: ['usuario'] } }]"  >Cancelar</button>
+        <button class="btn btn-round btn-high boton-finalizar mx-2" [routerLink]="[{ outlets: { rdash: ['usuario'] } }]" >Finalizar</button>
+      </div>
+    </form>
+</div>

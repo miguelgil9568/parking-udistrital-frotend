@@ -34,6 +34,7 @@ export class MenuComponent implements OnInit {
           {
             label: 'Roles',
             icon: 'pi pi-sliders-v',
+            routerLink: [{ outlets: { rdash: ['modusuario'] } }]
           }
         ]
       },
@@ -60,5 +61,12 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-fw pi-cog',
       }
     ];
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('token');
+    //redirect to login page
+    window.location.href = '/login'
+    // this.router.navigate(['/login']);
   }
 }

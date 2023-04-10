@@ -1,9 +1,10 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Injectable, OnInit} from '@angular/core';
 import {Car} from '../../class/Cars';
 import { Auth } from 'src/model/Auth';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'src/util/notificaction.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
 
   title = 'parking-udistrital-frontend';
@@ -22,16 +23,19 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   formLogin: FormGroup;
-  viewLogin= false;
-  viewHome= true;
+  viewLogin: boolean;
+  viewHome: boolean;
   item: any;
 
   constructor( private formBuilder: FormBuilder,
                private loginService: LoginService,
-               private router: Router) {
+               private router: Router,
+               private notificationsService:NotificationsService) {
   }
 
   ngOnInit() {
+    this.viewHome= true;
+    this.viewLogin= false;
     this.formLogin = this.formBuilder.group({
       username: new FormControl('', [
         Validators.required,
@@ -44,6 +48,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+      if ((sessionStorage.getItem('token')) !== null ) {
+        this.viewHome= false;
+        this.viewLogin= true;
+        this.router.navigate(['/app/dashboard']);
+        return true;
+      } else {
+        this.viewHome= true;
+        this.viewLogin= false;
+        return false;
+      }
+  }
+
   public login(){
     console.log('ingreso');
     this.auth = this.formLogin.value;
@@ -52,7 +69,12 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', result.token);
       this.viewHome= false;
       this.viewLogin= true;
-    });
+      this.notificationsService.info('Usuario correcto',  result.mensaje);
+    },error => {
+        this.notificationsService.error('Credenciales incorrectas', 'username o contraseña incorrecta ');
+        console.log('Error');
+      }
+    );
   }
 
   cambio(){
