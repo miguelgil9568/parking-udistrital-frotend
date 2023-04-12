@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
           {
             label: 'Roles',
             icon: 'pi pi-sliders-v',
-            routerLink: [{ outlets: { rdash: ['modusuario'] } }]
+            // routerLink: [{ outlets: { rdash: ['modusuario'] } }]
           }
         ]
       },
@@ -42,7 +42,14 @@ export class MenuComponent implements OnInit {
         label: 'Vehiculos',
         icon: 'pi pi-fw pi-car',
         items: [
-          {label: 'Consulta', icon: 'pi pi-car'}
+          {label: 'Consulta',
+            icon: 'pi pi-car',
+            routerLink: [{ outlets: { rdash: ['vehiculo'] } }]
+          },
+          {label: 'Agregar ',
+            icon: 'pi pi-search-plus',
+            routerLink: [{ outlets: { rdash: ['modvehiculo'] } }]
+          }
         ]
       },
       {

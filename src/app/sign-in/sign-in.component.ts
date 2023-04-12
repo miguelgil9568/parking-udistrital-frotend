@@ -49,6 +49,7 @@ export class SignInComponent implements OnInit {
     this.newUsuario = this.formRegister.value;
     this.usuarioService.registerUser(this.newUsuario).subscribe(result => {
       console.log('Usuario creado');
+      this.router.navigate(['/login']);
     });
   }
 

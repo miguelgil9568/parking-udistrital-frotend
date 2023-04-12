@@ -1,8 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Vehicle} from '../../../model/Vehicle';
 import {Usuario} from '../../../model/Usuario';
 import {Role} from '../../../model/Role';
+import {UsuarioService} from '../../../service/usuario.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-modificar-usuario',
@@ -14,15 +16,18 @@ export class ModificarUsuarioComponent implements OnInit {
   crearUsuario: FormGroup;
   labelAccion = 'Crear';
   vehiculos: Vehicle[] = [];
-  roles: string[];
+  idUsuario: number;
 
   @Input()
   usuarioSeleccionado: Usuario;
 
-  constructor() { }
+  @Output()
+  updateEvent = new EventEmitter<boolean>();
+
+  constructor(private usuarioService: UsuarioService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.roles = ['USER', 'ADMIN'];
     this.crearUsuario = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -44,7 +49,7 @@ export class ModificarUsuarioComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
       ]),
-      role: new FormControl('USER', [
+      type: new FormControl('USER', [
         Validators.required,
         Validators.minLength(5),
       ]),
@@ -59,7 +64,23 @@ export class ModificarUsuarioComponent implements OnInit {
     this.crearUsuario.controls['code'].setValue(this.usuarioSeleccionado.code);
     this.crearUsuario.controls['phoneNumber'].setValue(this.usuarioSeleccionado.phoneNumber);
     this.crearUsuario.controls['email'].setValue(this.usuarioSeleccionado.email);
-    this.crearUsuario.controls['role'].setValue(this.usuarioSeleccionado.role[0].nameRole);
+    this.crearUsuario.controls['type'].setValue(this.usuarioSeleccionado.type);
     this.vehiculos = this.usuarioSeleccionado.vehicles;
+  }
+
+  setUsuario(){
+    this.idUsuario = this.usuarioSeleccionado.id;
+    this.usuarioSeleccionado = this.crearUsuario.value;
+    this.update();
+  }
+
+  public update(): void {
+    this.usuarioService.updateUser(this.idUsuario, this.usuarioSeleccionado).subscribe(
+      response => {
+        console.log(response);
+        this.updateEvent.emit(true);
+      }
+    );
+    console.log("usuario actualizado");
   }
 }

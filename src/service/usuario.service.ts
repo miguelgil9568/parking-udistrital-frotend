@@ -40,6 +40,18 @@ export class UsuarioService {
     );
   }
 
+  updateUser(id, usuario: Usuario): Observable<any> {
+    return this.http.put<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/update/' + id, usuario).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
+
   // cambiarContra(cambiarContra: any, token: string): Observable<any> {
   //   let headers = new HttpHeaders()
   //   .set('Content-Type', 'application/json')

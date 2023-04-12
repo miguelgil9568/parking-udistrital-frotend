@@ -39,9 +39,16 @@
       </div>
       <div class="row">
         <div class="form-group col-md-12">
-          <label for="phoneNumber">Rol</label>
-          <p-dropdown placeholder="Seleccione un rol" [options]="roles" [ngClass]="crearUsuario.controls['role'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'"
-                     formControlName="role" ></p-dropdown>
+          <label for="phoneNumber">Tipo</label>
+          <select placeholder="Seleccione un tipo"
+                      [ngClass]="crearUsuario.controls['type'].invalid ?
+                      'ng-invalid ng-dirty campo-input':'campo-input'"
+                      optionLabel="nameRole"
+                     formControlName="type" >
+            <option selected>Estudiante</option>
+            <option >Profesor</option>
+            <option >Administrativo</option>
+          </select>
         </div>
       </div>
       <br>
@@ -73,8 +80,8 @@
       </p-table>
       <br>
       <div class=" mx-auto text-end">
-        <button pButton class="ui-button-secondary mx-2"  label="Cancelar"  ></button>
-        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar"  ></button>
+        <button pButton class="ui-button-secondary mx-2"  label="Cancelar" (click)="updateEvent.emit(true);" ></button>
+        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="setUsuario()" [disabled]="crearUsuario.invalid"></button>
       </div>
     </form>
 </div>

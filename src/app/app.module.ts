@@ -17,7 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuModule } from 'primeng/menu';
-import {ListboxModule, MenubarModule, MessageModule, SelectButtonModule} from 'primeng';
+import {ChartModule, FileUploadModule, ListboxModule, MenubarModule, MessageModule, PanelModule, SelectButtonModule} from 'primeng';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -26,6 +26,8 @@ import { TokenInterceptorService } from 'src/util/token-interceptor.interceptor'
 import { SignInComponent } from './sign-in/sign-in.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar-usuario.component';
+import { VehiculoComponent } from './vehiculo/vehiculo.component';
+import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.component';
 
 // // ======= To get access token
 // export function tokenGetter() {
@@ -44,6 +46,8 @@ import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar
     DashboardComponent,
     SignInComponent,
     ModificarUsuarioComponent,
+    VehiculoComponent,
+    NewVehiculoComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +75,9 @@ import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar
     AppRoutingModule,
     SelectButtonModule,
     ListboxModule,
+    ChartModule,
+    PanelModule,
+    FileUploadModule,
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter

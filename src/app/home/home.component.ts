@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IndicadoresService} from '../../service/Indicadores.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  dataUsuarios: any;
+  dataParkings: any[] = [];
+
+  constructor(private indicadoresService: IndicadoresService) { }
 
   ngOnInit(): void {
+
+    this.indicadoresService.capacity().subscribe(
+      (result: any) => {
+        console.log(result);
+        let capa: any;
+        for (let capacity of result.stattusCapacity ){
+          capa = {
+            name: capacity.nameParking,
+            labels: ['Disponible', 'Ocupado', 'Agendado'],
+            datasets: [
+              {
+                data: [capacity.available, capacity.busy, capacity.reserved],
+                backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+                ]
+              }]
+          };
+          this.dataParkings.push(capa);
+        }
+
+      }
+    );
+    this.indicadoresService.usuarios().subscribe(
+      result => {
+            this.dataUsuarios = {
+              labels: ['Disponible','Ocupado','Agendado'],
+              datasets: [
+                {
+                  data: [300, 50, 100],
+                  backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                  ],
+                  hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                  ]
+                }]
+            };
+      });
   }
 
 }

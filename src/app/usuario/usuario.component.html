@@ -25,4 +25,4 @@
   <ng-template pTemplate="footer">
   </ng-template>
 </p-table>
-<app-modificar-usuario *ngIf="ismodificar" [usuarioSeleccionado]="usuarioSeleccionado"></app-modificar-usuario>
+<app-modificar-usuario *ngIf="ismodificar" [usuarioSeleccionado]="usuarioSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-modificar-usuario>
