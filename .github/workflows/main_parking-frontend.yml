@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Parking-Frontend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B18A160F2FF74915B5C408CD1D1AB42F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_42337E31BC7A443C99A02C5BEA5C575D }}
           package: .
