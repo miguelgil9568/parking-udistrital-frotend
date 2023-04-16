@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'src/util/notificaction.service';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor( private formBuilder: FormBuilder,
                private loginService: LoginService,
                private router: Router,
-               private notificationsService:NotificationsService) {
+               private notificationsService:NotificationsService,
+               private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -70,10 +72,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.viewHome= false;
       this.viewLogin= true;
       this.notificationsService.info('Usuario correcto',  result.mensaje);
+      this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvido al sistema'});
     },error => {
-        this.notificationsService.error('Credenciales incorrectas', 'username o contraseña incorrecta ');
-        console.log('Error');
-      }
+      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Clave o usuario incorrecto'});
+      console.log('Error');
+     }
     );
   }
 

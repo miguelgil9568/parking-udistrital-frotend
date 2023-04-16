@@ -6,9 +6,12 @@ export interface NewVehicle {
   make: string;
   placa: number;
   color: string;
-  photoVehicle: string;
-  photoLicense: string;
-  photoIDOwner: string;
+  namePhotoVehicle: string;
+  bytesPhotoVehicle: string| ArrayBuffer;
+  namePhotoLicense: string;
+  bytesPhotoLicense: string;
+  namePhotoIDOwner: string;
+  bytesPhotoIDOwner: string;
   createAt: Date;
   modified: Date;
   user: Usuario;

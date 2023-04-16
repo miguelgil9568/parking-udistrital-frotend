@@ -18,11 +18,14 @@
       <td>{{vehiculo.createAt}}</td>
       <td class="align-content-center">
         <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" (click)="changeModificar(vehiculo)"></button>
-        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="showDialog(vehiculo)"></button>
       </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="footer">
   </ng-template>
 </p-table>
-<!--<app-modificar-vehiculo *ngIf="ismodificar" [vehiculoSeleccionado]="vehiculoSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-modificar-vehiculo>-->
+<app-new-vehiculo *ngIf="ismodificar" [vehiculoSeleccionado]="vehiculoSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-new-vehiculo>
+
+<app-consultar-vehiculo [vehiculo]="vehiculo" *ngIf="display" >
+</app-consultar-vehiculo >

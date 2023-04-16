@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Vehicle} from '../../model/vehicle';
 import { VehiculoService } from 'src/service/vehiculo.service';
+import {EndPointsConstants} from '../../util/endpointsConstants-contast';
+import {Image} from '../../model/image';
 
 @Component({
   selector: 'app-vehiculo',
@@ -9,12 +11,19 @@ import { VehiculoService } from 'src/service/vehiculo.service';
 })
 export class VehiculoComponent implements OnInit {
   vehiculos: Vehicle[];
+  vehiculo: Vehicle;
   ismodificar: boolean = false;
   vehiculoSeleccionado: Vehicle;
+  images: any[]= [] ;
+  data : any;
+  display: boolean = false;
+
+
 
   constructor(private vehiculoService: VehiculoService) { }
 
   ngOnInit(): void {
+
     this.vehiculoService.findAll().subscribe(result => {
       this.vehiculos = result;
     });
@@ -30,6 +39,33 @@ export class VehiculoComponent implements OnInit {
     //   { brand: 'HTC', lastYearSale: '90%', thisYearSale: '56%', lastYearProfit: '$765,442', thisYearProfit: '$296,232' },
     //   { brand: 'Toshiba', lastYearSale: '75%', thisYearSale: '54%', lastYearProfit: '$21,212', thisYearProfit: '$12,533' }
     // ];
+  }
+
+  showDialog(vehiculo: Vehicle) {
+    this.display = true;
+    this.images = [];
+    this.vehiculo=vehiculo;
+    console.log(EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoVehicle)
+    let image : any = {
+      previewImageSrc: EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoVehicle,
+      thumbnailImageSrc: EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoVehicle,
+      alt: "Foto de registro del vehiculo\"",
+      title: "Vehiculo"
+    }
+    this.images.push(image);
+    // let image2: Image;
+    // image2.ImageSrc = EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoLicense;
+    // image2.lImageSrc= EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoLicense;
+    // image2.alt = "Foto de registro de la licencia del vehiculo ";
+    // image2.title= "Licencia";
+    // this.images.push(image2);
+    // let image3: Image;
+    // image3.ImageSrc = EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoIDOwner;
+    // image3.lImageSrc= EndPointsConstants.URL_ENDPOINT_FILE +vehiculo.photoIDOwner;
+    // image3.alt = "Foto de registro del carnet estudiantil ";
+    // image3.title= "Carnet estuantil";
+    // this.images.push(image3);
+    // console.log(JSON.stringify(this.images));
   }
 
   changeModificar(vehiculo){

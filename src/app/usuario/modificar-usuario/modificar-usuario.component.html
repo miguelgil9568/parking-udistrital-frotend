@@ -72,6 +72,7 @@
             <td>{{vehiculo.createAt}}</td>
             <td class="align-content-center">
               <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-trash"></button>
+              <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="vehiculoSeleccionado = vehiculo; visible = true"></button>
             </td>
           </tr>
         </ng-template>
@@ -81,7 +82,8 @@
       <br>
       <div class=" mx-auto text-end">
         <button pButton class="ui-button-secondary mx-2"  label="Cancelar" (click)="updateEvent.emit(true);" ></button>
-        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="setUsuario()" [disabled]="crearUsuario.invalid"></button>
+        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="setUsuario()" [disabled]="crearUsuario.invalid" submit></button>
       </div>
     </form>
 </div>
+<app-consultar-vehiculo [vehiculo]="vehiculoSeleccionado" *ngIf="visible" ></app-consultar-vehiculo>

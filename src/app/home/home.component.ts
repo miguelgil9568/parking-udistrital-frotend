@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IndicadoresService} from '../../service/Indicadores.service';
+import {Message, MessageService} from 'primeng';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
   dataUsuarios: any;
   dataParkings: any[] = [];
 
-  constructor(private indicadoresService: IndicadoresService) { }
+  constructor(private indicadoresService: IndicadoresService,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -41,6 +43,8 @@ export class HomeComponent implements OnInit {
           this.dataParkings.push(capa);
         }
 
+      },error => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: error.error.mensaje});
       }
     );
     this.indicadoresService.usuarios().subscribe(

@@ -5,6 +5,7 @@ import {Usuario} from '../../../model/Usuario';
 import {Role} from '../../../model/Role';
 import {UsuarioService} from '../../../service/usuario.service';
 import {Route, Router} from '@angular/router';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-modificar-usuario',
@@ -16,7 +17,9 @@ export class ModificarUsuarioComponent implements OnInit {
   crearUsuario: FormGroup;
   labelAccion = 'Crear';
   vehiculos: Vehicle[] = [];
+  vehiculoSeleccionado: Vehicle;
   idUsuario: number;
+  visible: boolean = false;
 
   @Input()
   usuarioSeleccionado: Usuario;
@@ -25,7 +28,9 @@ export class ModificarUsuarioComponent implements OnInit {
   updateEvent = new EventEmitter<boolean>();
 
   constructor(private usuarioService: UsuarioService,
-              private router: Router) { }
+              private router: Router,
+              private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
     this.crearUsuario = new FormGroup({
@@ -57,7 +62,7 @@ export class ModificarUsuarioComponent implements OnInit {
     this.setValues();
   }
 
-  setValues(){
+  setValues() {
     this.labelAccion = 'Modificar';
     this.crearUsuario.controls['name'].setValue(this.usuarioSeleccionado.name);
     this.crearUsuario.controls['password'].setValue(this.usuarioSeleccionado.password);
@@ -68,7 +73,7 @@ export class ModificarUsuarioComponent implements OnInit {
     this.vehiculos = this.usuarioSeleccionado.vehicles;
   }
 
-  setUsuario(){
+  setUsuario() {
     this.idUsuario = this.usuarioSeleccionado.id;
     this.usuarioSeleccionado = this.crearUsuario.value;
     this.update();
@@ -79,8 +84,11 @@ export class ModificarUsuarioComponent implements OnInit {
       response => {
         console.log(response);
         this.updateEvent.emit(true);
+        this.messageService.add({severity: 'success', summary: 'Usuario ' +  this.labelAccion, detail: 'Usuario ' + this.labelAccion + ' con exito'});
+      }, error => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: error.error.mensaje});
       }
     );
-    console.log("usuario actualizado");
+    console.log('usuario actualizado');
   }
 }

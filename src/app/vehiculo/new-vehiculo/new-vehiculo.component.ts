@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Vehicle} from '../../../model/Vehicle';
 import {VehiculoService} from '../../../service/vehiculo.service';
 import {Router} from '@angular/router';
+import {NewVehicle} from '../../../model/NewVehicle';
 
 @Component({
   selector: 'app-new-vehiculo',
@@ -14,11 +15,13 @@ export class NewVehiculoComponent implements OnInit {
   crearVehiculo: FormGroup;
   labelAccion = 'Crear';
   idVehiculo: number;
-  uploadedFiles: any[] = [];
+  photoVehicle: any[] = [];
+  photoLicense: any[] = [];
+  photoIDOwner: any[] = [];
 
 
   @Input()
-  vehiculoSeleccionado: Vehicle;
+  vehiculoSeleccionado: NewVehicle;
 
   @Output()
   updateEvent = new EventEmitter<boolean>();
@@ -66,18 +69,30 @@ export class NewVehiculoComponent implements OnInit {
     this.crearVehiculo.controls['make'].setValue(this.vehiculoSeleccionado.make);
     this.crearVehiculo.controls['color'].setValue(this.vehiculoSeleccionado.color);
     this.crearVehiculo.controls['type'].setValue(this.vehiculoSeleccionado.type);
-    this.crearVehiculo.controls['photoVehicle'].setValue(this.vehiculoSeleccionado.photoVehicle);
-    this.crearVehiculo.controls['photoLicense'].setValue(this.vehiculoSeleccionado.photoLicense);
-    this.crearVehiculo.controls['photoIDOwner'].setValue(this.vehiculoSeleccionado.photoIDOwner);
   }
 
   setVehiculo(){
-    this.idVehiculo = this.vehiculoSeleccionado.id;
+    // this.idVehiculo = this.vehiculoSeleccionado.id;
     this.vehiculoSeleccionado = this.crearVehiculo.value;
     this.update();
   }
 
   public update(): void {
+    this.vehiculoSeleccionado = this.crearVehiculo.value;
+
+    let reader = new FileReader();
+    reader.readAsDataURL(this.photoVehicle[0]);
+    reader.onload = function () {
+      //me.modelvalue = reader.result;
+      console.log(reader.result);
+      return reader.result;
+    };
+    this.vehiculoSeleccionado.bytesPhotoVehicle = reader.result;
+    console.log(this.photoVehicle[0]);
+    console.log(this.photoLicense[0]);
+    console.log(this.photoIDOwner[0]);
+    this.crearVehiculo.controls['photoVehicle'].setValue(this.photoVehicle[0]);
+    this.crearVehiculo.controls['photoIDOwner'].setValue(this.photoIDOwner[0]);
     this.vehiculoService.registerVehicle(this.vehiculoSeleccionado).subscribe(
       response => {
         console.log(response);
@@ -87,10 +102,21 @@ export class NewVehiculoComponent implements OnInit {
     console.log("vehiculo actualizado");
   }
 
-  onUpload(event) {
-    for ( let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
 
+    onUpload(event:any) {
+    console.log(event)
+    for ( let file of event.files) {
+       this.photoVehicle.push(file);
+    }
+  }
+  onUpload2(event:any) {
+    for ( let file of event.files) {
+      this.photoLicense.push(file);
+    }
+  }
+  onUpload3(event:any) {
+    for ( let file of event.files) {
+      this.photoIDOwner.push(file);
+    }
   }
 }

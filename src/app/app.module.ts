@@ -17,7 +17,15 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuModule } from 'primeng/menu';
-import {ChartModule, FileUploadModule, ListboxModule, MenubarModule, MessageModule, PanelModule, SelectButtonModule} from 'primeng';
+import {
+  ChartModule,
+  DialogModule,
+  FileUploadModule, GalleriaModule,
+  ListboxModule,
+  MenubarModule,
+  PanelModule,
+  SelectButtonModule, ToastModule, MessageService
+} from 'primeng';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -28,6 +36,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar-usuario.component';
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.component';
+import { ConsultarVehiculoComponent } from './usuario/consultar-vehiculo/consultar-vehiculo.component';
 
 // // ======= To get access token
 // export function tokenGetter() {
@@ -48,6 +57,7 @@ import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.compo
     ModificarUsuarioComponent,
     VehiculoComponent,
     NewVehiculoComponent,
+    ConsultarVehiculoComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +88,9 @@ import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.compo
     ChartModule,
     PanelModule,
     FileUploadModule,
+    DialogModule,
+    GalleriaModule,
+    ToastModule
     // JwtModule.forRoot({
     //   config: {
     //     tokenGetter: tokenGetter
@@ -86,7 +99,10 @@ import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.compo
 
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true},
+    MessageService
     ],
   bootstrap: [AppComponent]
 })
