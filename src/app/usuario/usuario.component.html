@@ -18,7 +18,7 @@
       <td>{{usuario.phoneNumber}}</td>
       <td class="align-content-center">
         <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" (click)="changeModificar(usuario)"></button>
-        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="visible = true; usuarioSeleccionado = usuario"></button>
       </td>
     </tr>
   </ng-template>
@@ -26,3 +26,4 @@
   </ng-template>
 </p-table>
 <app-modificar-usuario *ngIf="ismodificar" [usuarioSeleccionado]="usuarioSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-modificar-usuario>
+<app-consultar-usuario [usuario]="usuarioSeleccionado" *ngIf="visible" ></app-consultar-usuario>

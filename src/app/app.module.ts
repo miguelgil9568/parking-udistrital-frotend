@@ -37,6 +37,7 @@ import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar
 import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.component';
 import { ConsultarVehiculoComponent } from './vehiculo/consultar-vehiculo/consultar-vehiculo.component';
+import { ConsultarUsuarioComponent } from './usuario/consultar-usuario/consultar-usuario.component';
 
 // ======= To get access token
 export function tokenGetter() {
@@ -57,7 +58,8 @@ export function tokenGetter() {
     ModificarUsuarioComponent,
     VehiculoComponent,
     NewVehiculoComponent,
-    ConsultarVehiculoComponent
+    ConsultarVehiculoComponent,
+    ConsultarUsuarioComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,85 @@
+<p-dialog header="Consulta por usuario" [(visible)]="visible" [style]="{width: '50%'}">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+
+    <h2>Datos del usuario  </h2>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        <label>Codigo del usuario</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.code}}
+      </div>
+      <div class="ui-grid-col-2">
+        <label>Fecha Creaci&oacute;n:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.createAt | date : "dd/MM/y HH:mm:ss"}}
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        <label>Nombre:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.name}}
+      </div>
+      <div class="ui-grid-col-2">
+        <label>Correo institucional:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.email}}
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        <label>Telefono de contacto:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.phoneNumber}}
+      </div>
+      <div class="ui-grid-col-2">
+        <label>Rol:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.role.length > 0 ? usuario.role[0].nameRole: ''}}
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        <label>username:</label>
+      </div>
+      <div class="ui-grid-col-4">
+        {{usuario.username}}
+      </div>
+    </div>
+  </div>
+  <br>
+  <h3>Vehiculos </h3>
+  <p-table [value]="usuario.vehicles"  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Codigo</th>
+        <th>Marca</th>
+        <th>Placa</th>
+        <th>Color</th>
+        <th>Fecha de creacion</th>
+        <th>Operacion</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vehiculo>
+      <tr>
+        <td>{{vehiculo.codeUser}}</td>
+        <td>{{vehiculo.make}}</td>
+        <td>{{vehiculo.placa}}</td>
+        <td>{{vehiculo.color}}</td>
+        <td>{{vehiculo.createAt}}</td>
+        <td class="align-content-center">
+          <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="vehiculoSeleccionado = vehiculo; visibleVehiculo = true"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+    </ng-template>
+  </p-table>
+</p-dialog>
+<app-consultar-vehiculo [vehiculo]="vehiculoSeleccionado" *ngIf="visibleVehiculo"  ></app-consultar-vehiculo>
