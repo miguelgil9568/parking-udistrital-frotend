@@ -1,29 +1,31 @@
-<h1>Aqui va el home de inicio al logueo</h1>
-<!--  <div class="form-row">-->
-<!--    <div class="form-group col-md-6">-->
-<!--      <div style="margin-bottom: 10px;" class="container categoria-home">-->
-<!--        <img class="" src=".\assets\administrar_gestor.png" alt="" srcset="">-->
-<!--        <p class="ml-1 titulo-categoria">Administrar de usarios</p>-->
+<h1>Bienvenido a la plataforma</h1>
+<br>
+<div class="container">
+  <p-panel header="Indicador por parqueaderos" [toggleable]="true">
+    <br>
+<!--    <div class="row">-->
+<!--        <div class="col-md-6">-->
+<!--          <h4>Indicador por vehiculos</h4>-->
+<!--          <p-chart type="pie" [data]="dataVehiculos"></p-chart>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="row">
+      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6" [ngClass]="i == dataParkings.length-1 && (dataParkings.length) %2 == 1? 'justify-content-around container': ''">
+        <h6>{{parking.name}}</h6>
+        <p-chart type="pie" [data]="parking"></p-chart>
+      </div>
+<!--      <div class="col-md-6">-->
+<!--        <h6>Indicador parqueadero motos</h6>-->
+<!--        <p-chart type="pie" [data]="dataUsuarios"></p-chart>-->
 <!--      </div>-->
-<!--      &lt;!&ndash;         <br *ngIf="hayPermiso('pagAdmonGestor')">&ndash;&gt;-->
-<!--      <div style="margin-bottom: 10px;" class="container categoria-home">-->
-<!--        <img class="" src=".\assets\categoria-u-admin.png" alt="" srcset="">-->
-<!--        <p class="ml-1 titulo-categoria">Gestionar usuario administrador</p>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;         <br *ngIf="hayPermiso('pagUsuarioAdminGestor')">&ndash;&gt;-->
-<!--      <div style="margin-bottom: 10px;" class="container categoria-home">-->
-<!--        <img class="" src=".\assets\categoria-usuario-entrega.png" alt="" srcset="">-->
-<!--        <p class="ml-1 titulo-categoria">Gestionar usuario entrega</p>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;          <br *ngIf="hayPermiso('pagUsuarioAdminGestor')">&ndash;&gt;-->
-<!--      <div style="margin-bottom: 10px;"  class="container categoria-home ">-->
-<!--        <img class="" src=".\assets\categoria-entrega.png" alt="" srcset="">-->
-<!--        <p class="ml-1 titulo-categoria">Reportes</p>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;         <br *ngIf="hayPermiso('pagUsuarioEntrega')">&ndash;&gt;-->
-<!--      <div  class="container categoria-home ">-->
-<!--        <img class="" src=".\assets\categoria-entrega.png" alt="" srcset="">-->
-<!--        <p class="ml-1 titulo-categoria">Entregas</p>-->
+    </div>
+    <br>
+<!--    <div class="row">-->
+<!--      <div class="col-md-6 justify-content-around container" >-->
+<!--        <h6>Indicador parqueadero bicicletas</h6>-->
+<!--        <p-chart type="pie" [data]="dataVehiculos"></p-chart>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--  </div>-->
+  </p-panel>
+</div>
+

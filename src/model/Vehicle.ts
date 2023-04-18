@@ -5,9 +5,9 @@ export interface Vehicle {
   make: string;
   placa: string;
   color: string;
-  photoVehicle: null;
-  photoLicense: null;
-  photoIDOwner: null;
+  photoVehicle: string;
+  photoLicense: string;
+  photoIDOwner: string;
   createAt: Date;
   modified: null;
 }

@@ -1,0 +1,31 @@
+<p-table [value]="vehiculos" *ngIf="!ismodificar" >
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Placa</th>
+      <th>Codigo usuario</th>
+      <th>Marca</th>
+      <th>Color</th>
+      <th>Fecha de creacion</th>
+      <th>Operacion</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-vehiculo>
+    <tr>
+      <td>{{vehiculo.placa}}</td>
+      <td>{{vehiculo.codeUser}}</td>
+      <td>{{vehiculo.make}}</td>
+      <td>{{vehiculo.color}}</td>
+      <td>{{vehiculo.createAt}}</td>
+      <td class="align-content-center">
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" (click)="changeModificar(vehiculo)"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="showDialog(vehiculo)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+  </ng-template>
+</p-table>
+<app-new-vehiculo *ngIf="ismodificar" [vehiculoSeleccionado]="vehiculoSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-new-vehiculo>
+
+<app-consultar-vehiculo [vehiculo]="vehiculo" *ngIf="display" >
+</app-consultar-vehiculo >

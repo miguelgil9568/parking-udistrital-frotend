@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { EndPointsConstants } from '../util/endpointsConstants-contast';
 import {Auth} from '../model/Auth';
 import {Usuario} from '../model/Usuario';
+import {NewUsuario} from '../model/NewUsuario';
 
 @Injectable({
   providedIn: 'any'
@@ -26,6 +27,30 @@ export class UsuarioService {
       )
     );
   }
+
+
+  registerUser(newUsuario: NewUsuario): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/sign-in', newUsuario).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
+  updateUser(id, usuario: Usuario): Observable<any> {
+    return this.http.put<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/update/' + id, usuario).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
 
   // cambiarContra(cambiarContra: any, token: string): Observable<any> {
   //   let headers = new HttpHeaders()
