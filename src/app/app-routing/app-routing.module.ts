@@ -18,8 +18,7 @@ const routes: Routes = [
     path: 'app/dashboard', component: DashboardComponent,
     children: [
       {path: '', component: HomeComponent, outlet: 'rdash'},
-      {path: 'usuario', component: UsuarioComponent, outlet: 'rdash',
-        canActivate: [RoleGuardService], data: { roles: ['ADMIN'] }},
+      {path: 'usuario', component: UsuarioComponent, outlet: 'rdash'},
       {path: 'modusuario', component: ModificarUsuarioComponent,  outlet: 'rdash'},
       {path: 'vehiculo', component: VehiculoComponent,  outlet: 'rdash'},
       {path: 'modvehiculo', component: NewVehiculoComponent,  outlet: 'rdash'},

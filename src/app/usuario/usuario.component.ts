@@ -12,6 +12,7 @@ export class UsuarioComponent implements OnInit {
   usuarios: Usuario[];
   ismodificar: boolean = false;
   usuarioSeleccionado: Usuario;
+  visible = false;
 
   constructor(private  usuarioService: UsuarioService) { }
 

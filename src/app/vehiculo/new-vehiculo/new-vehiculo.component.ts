@@ -73,6 +73,7 @@ export class NewVehiculoComponent implements OnInit {
     this.crearVehiculo.controls['type'].setValue(this.vehiculoSeleccionado.type);
   }
 
+
   setVehiculo(){
     // this.idVehiculo = this.vehiculoSeleccionado.id;
     this.vehiculoSeleccionado = this.crearVehiculo.value;
@@ -108,7 +109,7 @@ export class NewVehiculoComponent implements OnInit {
   }
 
 
-    onUpload(event:any) {
+  onUpload(event:any) {
     console.log(event)
     for ( let file of event.files) {
        this.photoVehicle.push(file);
