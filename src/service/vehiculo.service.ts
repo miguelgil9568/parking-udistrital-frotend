@@ -28,6 +28,17 @@ export class VehiculoService {
     );
   }
 
+  findAllbyUser(idUser): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(EndPointsConstants.URL_ENDPOINT + 'api/vehicle/code/'+ idUser).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
 
   registerVehicle(newVehicle: NewVehicle): Observable<any> {
     return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/vehicle/new-vehicle/3', newVehicle).pipe(

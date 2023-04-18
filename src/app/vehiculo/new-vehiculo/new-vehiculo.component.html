@@ -72,7 +72,7 @@
     <div class="row">
       <div class="form-group col-md-12">
         <label for="photoIDOwner"  >Foto del carnet estudiantil *</label>
-        <p-fileUpload name="demo3[]"  multiple="multiple"  id="photoIDOwner" (onSelect)="onUpload3($event)">
+        <p-fileUpload name="demo3[]"  multiple="multiple" [auto]="true"  id="photoIDOwner" (onSelect)="onUpload3($event)">
           <ng-template pTemplate="content">
             <ul *ngIf="photoIDOwner">
               <li *ngFor="let file of photoIDOwner">{{file.name}} - {{file.size}} bytes</li>

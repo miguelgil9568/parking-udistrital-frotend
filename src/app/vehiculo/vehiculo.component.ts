@@ -3,6 +3,7 @@ import {Vehicle} from '../../model/Vehicle';
 import { VehiculoService } from 'src/service/vehiculo.service';
 import {EndPointsConstants} from '../../util/endpointsConstants-contast';
 import {Image} from '../../model/image';
+import {UsuarioService} from '../../service/usuario.service';
 
 @Component({
   selector: 'app-vehiculo',
@@ -17,16 +18,26 @@ export class VehiculoComponent implements OnInit {
   images: any[]= [] ;
   data : any;
   display: boolean = false;
+  labelTitulo= 'Vehiculos'
 
 
-
-  constructor(private vehiculoService: VehiculoService) { }
+  constructor(private vehiculoService: VehiculoService,
+              private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
 
-    this.vehiculoService.findAll().subscribe(result => {
-      this.vehiculos = result;
-    });
+    if(!this.validarPermisos()){
+      this.labelTitulo = 'Mis vehiculos';
+      this.usuarioService.findAllbyEmail(JSON.parse(sessionStorage.getItem('token')).username).subscribe(value => {
+        this.vehiculoService.findAllbyUser(value.code).subscribe(result => {
+          this.vehiculos = result;
+        });
+      })
+    }else{
+      this.vehiculoService.findAll().subscribe(result => {
+        this.vehiculos = result;
+      });
+    }
     //  = [
     //   { brand: 'Apple', lastYearSale: '51%', thisYearSale: '40%', lastYearProfit: '$54,406.00', thisYearProfit: '$43,342' },
     //   { brand: 'Samsung', lastYearSale: '83%', thisYearSale: '96%', lastYearProfit: '$423,132', thisYearProfit: '$312,122' },
@@ -39,6 +50,13 @@ export class VehiculoComponent implements OnInit {
     //   { brand: 'HTC', lastYearSale: '90%', thisYearSale: '56%', lastYearProfit: '$765,442', thisYearProfit: '$296,232' },
     //   { brand: 'Toshiba', lastYearSale: '75%', thisYearSale: '54%', lastYearProfit: '$21,212', thisYearProfit: '$12,533' }
     // ];
+  }
+
+  validarPermisos(){
+    let token : any = JSON.parse(sessionStorage.getItem('token'));
+    console.log('token '+ token.user);
+    return token.user.authorities[0].authority == 'ROLE_ADMIN' ? true : false;
+
   }
 
   showDialog(vehiculo: Vehicle) {

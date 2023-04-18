@@ -37,6 +37,11 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-users',
             routerLink: [{ outlets: { rdash: ['usuario'] } }],
             visible: this.validarPermisos('ROLE_ADMIN'),
+            },{
+            label: 'Agregar ',
+            icon: 'pi pi-search-plus',
+            routerLink: [{ outlets: { rdash: ['modusuario'] } }],
+            visible: this.validarPermisos('ROLE_ADMIN'),
           },
           {
             label: 'Roles',
@@ -53,7 +58,7 @@ export class MenuComponent implements OnInit {
           {label: 'Consulta',
             icon: 'pi pi-car',
             routerLink: [{ outlets: { rdash: ['vehiculo'] } }],
-            visible: this.validarPermisos('ROLE_ADMIN'),
+            // visible: this.validarPermisos('ROLE_ADMIN'),
           },
           {label: 'Agregar ',
             icon: 'pi pi-search-plus',

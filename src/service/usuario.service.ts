@@ -28,6 +28,17 @@ export class UsuarioService {
     );
   }
 
+  findAllbyEmail(email): Observable<Usuario> {
+    return this.http.get<Usuario>(EndPointsConstants.URL_ENDPOINT + 'api/user/email/' + email).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
 
   registerUser(newUsuario: NewUsuario): Observable<any> {
     return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/sign-in', newUsuario).pipe(
