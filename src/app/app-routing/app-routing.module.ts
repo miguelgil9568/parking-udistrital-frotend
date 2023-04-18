@@ -9,6 +9,7 @@ import {SignInComponent} from '../sign-in/sign-in.component';
 import {ModificarUsuarioComponent} from '../usuario/modificar-usuario/modificar-usuario.component';
 import {VehiculoComponent} from '../vehiculo/vehiculo.component';
 import {NewVehiculoComponent} from '../vehiculo/new-vehiculo/new-vehiculo.component';
+import {RoleGuardService} from '../../service/role-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: 'app/dashboard', component: DashboardComponent,
     children: [
       {path: '', component: HomeComponent, outlet: 'rdash'},
-      {path: 'usuario', component: UsuarioComponent, outlet: 'rdash'},
+      {path: 'usuario', component: UsuarioComponent, outlet: 'rdash',
+        canActivate: [RoleGuardService], data: { roles: ['ADMIN'] }},
       {path: 'modusuario', component: ModificarUsuarioComponent,  outlet: 'rdash'},
       {path: 'vehiculo', component: VehiculoComponent,  outlet: 'rdash'},
       {path: 'modvehiculo', component: NewVehiculoComponent,  outlet: 'rdash'},

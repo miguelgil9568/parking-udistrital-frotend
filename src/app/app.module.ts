@@ -38,10 +38,10 @@ import { VehiculoComponent } from './vehiculo/vehiculo.component';
 import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.component';
 import { ConsultarVehiculoComponent } from './usuario/consultar-vehiculo/consultar-vehiculo.component';
 
-// // ======= To get access token
-// export function tokenGetter() {
-//   return sessionStorage.getItem('token');
-// }
+// ======= To get access token
+export function tokenGetter() {
+  return sessionStorage.getItem('token');
+}
 
 
 // @ts-ignore
@@ -90,12 +90,12 @@ import { ConsultarVehiculoComponent } from './usuario/consultar-vehiculo/consult
     FileUploadModule,
     DialogModule,
     GalleriaModule,
-    ToastModule
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: tokenGetter
-    //   }
-    // })
+    ToastModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
 
   ],
   providers: [

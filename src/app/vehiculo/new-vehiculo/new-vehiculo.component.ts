@@ -4,6 +4,7 @@ import {Vehicle} from '../../../model/Vehicle';
 import {VehiculoService} from '../../../service/vehiculo.service';
 import {Router} from '@angular/router';
 import {NewVehicle} from '../../../model/NewVehicle';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-new-vehiculo',
@@ -27,7 +28,8 @@ export class NewVehiculoComponent implements OnInit {
   updateEvent = new EventEmitter<boolean>();
 
   constructor(private vehiculoService: VehiculoService,
-              private router: Router) { }
+              private router: Router,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.crearVehiculo = new FormGroup({
@@ -97,6 +99,9 @@ export class NewVehiculoComponent implements OnInit {
       response => {
         console.log(response);
         this.updateEvent.emit(true);
+        this.messageService.add({severity: 'success', summary: 'Usuario ' +  this.labelAccion, detail: 'Vehiculo ' + this.labelAccion + ' con exito'});
+      }, error => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: error.error.mensaje});
       }
     );
     console.log("vehiculo actualizado");

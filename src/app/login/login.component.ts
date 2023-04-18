@@ -68,11 +68,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth = this.formLogin.value;
     this.loginService.login(this.auth).subscribe(result =>{
       this.router.navigate(['/app/dashboard']);
-      sessionStorage.setItem('token', result.token);
+      sessionStorage.setItem('token', JSON.stringify(result));
       this.viewHome= false;
       this.viewLogin= true;
       this.notificationsService.info('Usuario correcto',  result.mensaje);
-      this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvido al sistema'});
+      this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvenido al sistema'});
     },error => {
       this.messageService.add({severity: 'error', summary: 'Error', detail: 'Clave o usuario incorrecto'});
       console.log('Error');

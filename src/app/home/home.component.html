@@ -10,7 +10,7 @@
 <!--        </div>-->
 <!--    </div>-->
     <div class="row">
-      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6" [ngClass]="i == dataParkings.length-1 && dataParkings.length%2 == 0? 'justify-content-around container': ''">
+      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6" [ngClass]="i == dataParkings.length-1 && (dataParkings.length) %2 == 1? 'justify-content-around container': ''">
         <h6>{{parking.name}}</h6>
         <p-chart type="pie" [data]="parking"></p-chart>
       </div>
