@@ -53,4 +53,8 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  atras(){
+    this.router.navigate(['/login']);
+  }
+
 }

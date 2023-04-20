@@ -51,8 +51,22 @@
           </select>
         </div>
       </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="photoVehicle"  >Foto personal *</label>
+<!--          <p-fileUpload name="demo[]" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">-->
+<!--            <ng-template pTemplate="content">-->
+<!--              <ul *ngIf="photoUsuario">-->
+<!--                <li *ngFor="let file of photoUsuario">{{file.name}} - {{file.size}} bytes</li>-->
+<!--              </ul>-->
+<!--            </ng-template>-->
+<!--          </p-fileUpload>-->
+
+          <input id="photoVehicle" type="file" (change)="onUpload($event)">
+        </div>
+      </div>
       <br>
-      <p-table [value]="vehiculos">
+      <p-table [value]="vehiculos" *ngIf="labelAccion != 'Crear'">
         <ng-template pTemplate="header">
           <tr>
             <th>Codigo</th>
@@ -82,8 +96,9 @@
       <br>
       <div class=" mx-auto text-end">
         <button pButton class="ui-button-secondary mx-2"  label="Cancelar" (click)="updateEvent.emit(true);" ></button>
-        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="setUsuario()" [disabled]="crearUsuario.invalid" submit></button>
+        <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar"
+                (click)="labelAccion == 'Crear' ? crear() :setUsuario()" [disabled]="crearUsuario.invalid" submit></button>
       </div>
     </form>
 </div>
-<app-consultar-vehiculo [vehiculo]="vehiculoSeleccionado" *ngIf="visible" ></app-consultar-vehiculo>
+<app-consultar-vehiculo [vehiculo]="vehiculoSeleccionado" *ngIf="visible " ></app-consultar-vehiculo>

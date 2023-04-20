@@ -51,8 +51,30 @@ export class UsuarioService {
     );
   }
 
+  registerNewUser(newUsuario: NewUsuario, formData): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/new-user', newUsuario, formData).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
   updateUser(id, usuario: Usuario): Observable<any> {
     return this.http.put<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/update/' + id, usuario).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
+  upload(id, formdata: FormData): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + '/api/storage/upload-file-azure?id=' + id, formdata).pipe(
       tap(
         success => { return success },
         error => {

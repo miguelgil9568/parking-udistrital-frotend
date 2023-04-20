@@ -1,0 +1,33 @@
+<h1>Parqueaderos</h1>
+<br>
+<p-table [value]="parqueaderos"  >
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Campus</th>
+      <th>Area</th>
+      <th>Capacidad</th>
+      <th>Fecha de creacion</th>
+      <th>Operacion</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-parqueadero>
+    <tr>
+      <td>{{parqueadero.name}}</td>
+      <td>{{parqueadero.campus}}</td>
+      <td>{{parqueadero.area}}</td>
+      <td>{{parqueadero.capacity}}</td>
+      <td>{{parqueadero.createAt}}</td>
+      <td class="align-content-center">
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-pencil" (click)="changeModificar(parqueadero)"></button>
+        <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus" (click)="showDialog(parqueadero)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer">
+  </ng-template>
+</p-table>
+<!--<app-new-vehiculo *ngIf="ismodificar" [vehiculoSeleccionado]="vehiculoSeleccionado" (updateEvent)="ngOnInit(); ismodificar= !ismodificar"></app-new-vehiculo>-->
+
+<!--<app-consultar-vehiculo [vehiculo]="parqueadero" *ngIf="display" >-->
+<!--</app-consultar-vehiculo >-->

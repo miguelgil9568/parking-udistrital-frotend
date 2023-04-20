@@ -6,6 +6,7 @@ import {Role} from '../../../model/Role';
 import {UsuarioService} from '../../../service/usuario.service';
 import {Route, Router} from '@angular/router';
 import {MessageService} from 'primeng';
+import {NewUsuario} from '../../../model/NewUsuario';
 
 @Component({
   selector: 'app-modificar-usuario',
@@ -20,6 +21,7 @@ export class ModificarUsuarioComponent implements OnInit {
   vehiculoSeleccionado: Vehicle;
   idUsuario: number;
   visible: boolean = false;
+  photoUsuario: File ;
 
   @Input()
   usuarioSeleccionado: Usuario;
@@ -37,10 +39,6 @@ export class ModificarUsuarioComponent implements OnInit {
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4)
       ]),
       code: new FormControl('', [
         Validators.required,
@@ -63,14 +61,15 @@ export class ModificarUsuarioComponent implements OnInit {
   }
 
   setValues() {
-    this.labelAccion = 'Modificar';
-    this.crearUsuario.controls['name'].setValue(this.usuarioSeleccionado.name);
-    this.crearUsuario.controls['password'].setValue(this.usuarioSeleccionado.password);
-    this.crearUsuario.controls['code'].setValue(this.usuarioSeleccionado.code);
-    this.crearUsuario.controls['phoneNumber'].setValue(this.usuarioSeleccionado.phoneNumber);
-    this.crearUsuario.controls['email'].setValue(this.usuarioSeleccionado.email);
-    this.crearUsuario.controls['type'].setValue(this.usuarioSeleccionado.type);
-    this.vehiculos = this.usuarioSeleccionado.vehicles;
+    if(this.usuarioSeleccionado != null){
+      this.labelAccion = 'Modificar';
+      this.crearUsuario.controls['name'].setValue(this.usuarioSeleccionado.name);
+      this.crearUsuario.controls['code'].setValue(this.usuarioSeleccionado.code);
+      this.crearUsuario.controls['phoneNumber'].setValue(this.usuarioSeleccionado.phoneNumber);
+      this.crearUsuario.controls['email'].setValue(this.usuarioSeleccionado.email);
+      this.crearUsuario.controls['type'].setValue(this.usuarioSeleccionado.type);
+      this.vehiculos = this.usuarioSeleccionado.vehicles;
+    }
   }
 
   setUsuario() {
@@ -79,10 +78,45 @@ export class ModificarUsuarioComponent implements OnInit {
     this.update();
   }
 
+
+
+  crear(){
+    let newUser: NewUsuario = this.crearUsuario.value;
+    console.log('this.photoUsuario = '+ JSON.stringify(this.photoUsuario));
+
+    let formData = new FormData();
+    formData.append('namePhoto', this.photoUsuario.name);
+    formData.append('bytesPhoto', this.photoUsuario);
+    console.log('formData = ' + JSON.stringify(formData));
+    let photo: any = {
+      "namePhoto": this.photoUsuario.name,
+      "bytesPhoto": this.photoUsuario,
+    };
+    newUser.Photo = photo;
+    this.usuarioService.registerNewUser(newUser, formData).subscribe(
+      response => {
+        console.log(response.Usuario.id);
+        this.usuarioService.upload(response.Usuario.id, formData).subscribe(result => {
+
+        });
+        this.updateEvent.emit(true);
+        this.messageService.add({severity: 'success', summary: 'Usuario ' +  this.labelAccion, detail: 'Usuario ' + this.labelAccion + ' con exito'});
+      }, error => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: error.error.mensaje});
+      }
+    );
+  }
+
   public update(): void {
+    let formData = new FormData();
+    formData.append('namePhoto', this.photoUsuario.name);
+    formData.append('bytesPhoto', this.photoUsuario);
     this.usuarioService.updateUser(this.idUsuario, this.usuarioSeleccionado).subscribe(
       response => {
         console.log(response);
+        this.usuarioService.upload(response.Usuario.id, formData).subscribe(result => {
+
+        });
         this.updateEvent.emit(true);
         this.messageService.add({severity: 'success', summary: 'Usuario ' +  this.labelAccion, detail: 'Usuario ' + this.labelAccion + ' con exito'});
       }, error => {
@@ -90,5 +124,12 @@ export class ModificarUsuarioComponent implements OnInit {
       }
     );
     console.log('usuario actualizado');
+  }
+
+  onUpload(event:any) {
+    console.log(event);
+    for ( let file of event.target.files) {
+      this.photoUsuario = file;
+    }
   }
 }

@@ -62,6 +62,17 @@ export class VehiculoService {
     );
   }
 
+  upload(id, formdata: FormData): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/update? id= ' + id, formdata).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
+
 
 
 
