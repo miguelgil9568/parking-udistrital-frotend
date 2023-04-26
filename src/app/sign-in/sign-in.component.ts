@@ -4,6 +4,7 @@ import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 import {UsuarioService} from '../../service/usuario.service';
 import {NewUsuario} from '../../model/NewUsuario';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-sign-in',
@@ -18,7 +19,8 @@ export class SignInComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private usuarioService: UsuarioService,
-              private router: Router) { }
+              private router: Router,
+              private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
@@ -50,6 +52,9 @@ export class SignInComponent implements OnInit {
     this.usuarioService.registerUser(this.newUsuario).subscribe(result => {
       console.log('Usuario creado');
       this.router.navigate(['/login']);
+      this.messageService.add({severity:'success', summary: 'Registro exitoso', detail: 'El usuario se ha registrado con exito'});
+    },error=> {
+      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Clave o usuario incorrecto'});
     });
   }
 
