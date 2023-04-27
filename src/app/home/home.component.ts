@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IndicadoresService} from '../../service/Indicadores.service';
 import {Message, MessageService} from 'primeng';
+import {StattusCapacity} from '../../model/StattusCapacity';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   dataUsuarios: any;
   dataParkings: any[] = [];
+  valores: StattusCapacity[] = [];
 
   constructor(private indicadoresService: IndicadoresService,
               private messageService: MessageService) { }
@@ -21,7 +23,8 @@ export class HomeComponent implements OnInit {
       (result: any) => {
         console.log(result);
         let capa: any;
-        for (let capacity of result.stattusCapacity ){
+        this.valores = result;
+        for (let capacity of result ){
           capa = {
             name: capacity.nameParking,
             labels: ['Disponible', 'Ocupado', 'Agendado'],

@@ -10,9 +10,12 @@
 <!--        </div>-->
 <!--    </div>-->
     <div class="row">
-      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6" [ngClass]="i == dataParkings.length-1 && (dataParkings.length) %2 == 1? 'justify-content-around container': ''">
+      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6 my-3  " [ngClass]="i == dataParkings.length-1 && (dataParkings.length) %2 == 1? 'justify-content-around container': ''">
         <h6>{{parking.name}}</h6>
-        <p-chart type="pie" [data]="parking"></p-chart>
+        <p-chart type="pie" [data]="parking" ></p-chart>
+        <label class="col-md-4">Disponible = {{valores[i].available}}  </label>
+        <label class="col-md-4">Ocupado = {{valores[i].busy}}  </label>
+        <label class="col-md-4">Agendado = {{valores[i].reserved}}  </label>
       </div>
 <!--      <div class="col-md-6">-->
 <!--        <h6>Indicador parqueadero motos</h6>-->

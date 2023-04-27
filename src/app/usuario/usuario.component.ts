@@ -13,6 +13,7 @@ export class UsuarioComponent implements OnInit {
   ismodificar: boolean = false;
   usuarioSeleccionado: Usuario;
   visible = false;
+  photoUsuario: any[] = [];
 
   constructor(private  usuarioService: UsuarioService) { }
 

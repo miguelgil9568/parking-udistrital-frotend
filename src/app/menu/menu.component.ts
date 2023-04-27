@@ -72,7 +72,8 @@ export class MenuComponent implements OnInit {
         visible: this.validarPermisos('ROLE_ADMIN'),
         items: [
           {label: 'Consulta', icon: 'pi pi-map',
-            visible: this.validarPermisos('ROLE_ADMIN'),},
+            visible: this.validarPermisos('ROLE_ADMIN'),
+            routerLink: [{ outlets: { rdash: ['parqueadero'] } }],},
         ]
       },
       {

@@ -10,6 +10,7 @@ import {ModificarUsuarioComponent} from '../usuario/modificar-usuario/modificar-
 import {VehiculoComponent} from '../vehiculo/vehiculo.component';
 import {NewVehiculoComponent} from '../vehiculo/new-vehiculo/new-vehiculo.component';
 import {RoleGuardService} from '../../service/role-guard.service';
+import {ParqueaderoComponent} from '../parqueadero/parqueadero.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes: Routes = [
       {path: 'modusuario', component: ModificarUsuarioComponent,  outlet: 'rdash'},
       {path: 'vehiculo', component: VehiculoComponent,  outlet: 'rdash'},
       {path: 'modvehiculo', component: NewVehiculoComponent,  outlet: 'rdash'},
-      // {path: ':gestor/crear-gestor', component: CrearGestorComponent, outlet: 'rdash'},
+      {path: 'parqueadero', component: ParqueaderoComponent, outlet: 'rdash'},
       // {path: 'usuario-admin', component: CrearUsuarioAdminComponent, outlet: 'rdash'},
       // {path: 'consultar-usuarios-admin', component: ConsultarUsuariosComponent, outlet: 'rdash'},
       // {path: 'consultar-usuarios-entrega', component: ConsultarUsuariosEntregaComponent, outlet: 'rdash'},

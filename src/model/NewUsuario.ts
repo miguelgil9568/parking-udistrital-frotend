@@ -4,4 +4,5 @@ export interface NewUsuario {
   code: string;
   phoneNumber: number;
   email: string;
+  Photo: any;
 }

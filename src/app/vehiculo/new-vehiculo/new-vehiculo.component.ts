@@ -62,7 +62,11 @@ export class NewVehiculoComponent implements OnInit {
         Validators.minLength(5),
       ]),
     });
-    this.setValues();
+    if(this.vehiculoSeleccionado != null ){
+      this.setValues();
+    }else {
+      this.labelAccion = 'Crear';
+    }
   }
 
   setValues(){
@@ -83,19 +87,19 @@ export class NewVehiculoComponent implements OnInit {
   public update(): void {
     this.vehiculoSeleccionado = this.crearVehiculo.value;
 
-    let reader = new FileReader();
-    reader.readAsDataURL(this.photoVehicle[0]);
-    reader.onload = function () {
-      //me.modelvalue = reader.result;
-      console.log(reader.result);
-      return reader.result;
-    };
-    this.vehiculoSeleccionado.bytesPhotoVehicle = reader.result;
-    console.log(this.photoVehicle[0]);
-    console.log(this.photoLicense[0]);
-    console.log(this.photoIDOwner[0]);
-    this.crearVehiculo.controls['photoVehicle'].setValue(this.photoVehicle[0]);
-    this.crearVehiculo.controls['photoIDOwner'].setValue(this.photoIDOwner[0]);
+    // let reader = new FileReader();
+    // reader.readAsDataURL(this.photoVehicle[0]);
+    // reader.onload = function () {
+    //   //me.modelvalue = reader.result;
+    //   console.log(reader.result);
+    //   return reader.result;
+    // };
+    // this.vehiculoSeleccionado.bytesPhotoVehicle = reader.result;
+    // console.log(this.photoVehicle[0]);
+    // console.log(this.photoLicense[0]);
+    // console.log(this.photoIDOwner[0]);
+    // this.crearVehiculo.controls['photoVehicle'].setValue(this.photoVehicle[0]);
+    // this.crearVehiculo.controls['photoIDOwner'].setValue(this.photoIDOwner[0]);
     this.vehiculoService.registerVehicle(this.vehiculoSeleccionado).subscribe(
       response => {
         console.log(response);
