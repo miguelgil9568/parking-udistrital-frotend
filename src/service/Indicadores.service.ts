@@ -53,6 +53,16 @@ export class IndicadoresService {
       )
     );
   }
+  newVisit(visit): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/visits/reserve', visit).pipe(
+      tap(
+        success => { return success },
+        error => {
+          return error;
+        }
+      )
+    );
+  }
 
 
 }

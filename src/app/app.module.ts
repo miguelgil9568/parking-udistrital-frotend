@@ -24,7 +24,7 @@ import {
   ListboxModule,
   MenubarModule,
   PanelModule,
-  SelectButtonModule, ToastModule, MessageService
+  SelectButtonModule, ToastModule, MessageService, CalendarModule
 } from 'primeng';
 import {FullCalendarModule} from 'primeng/fullcalendar';
 import { UsuarioComponent } from './usuario/usuario.component';
@@ -99,7 +99,8 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter
       }
-    })
+    }),
+    CalendarModule
 
   ],
   providers: [
