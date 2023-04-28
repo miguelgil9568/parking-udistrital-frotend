@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Injectable, OnInit} from '@angular/core';
 import {Car} from '../../class/Cars';
 import { Auth } from 'src/model/Auth';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'src/util/notificaction.service';
@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   cols: any[];
   username = '';
   password = '';
-  formLogin: FormGroup;
+  formLogin: UntypedFormGroup;
   viewLogin: boolean;
   viewHome: boolean;
   item: any;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor( private formBuilder: UntypedFormBuilder,
                private loginService: LoginService,
                private router: Router,
                private notificationsService:NotificationsService,
@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.viewHome= true;
     this.viewLogin= false;
     this.formLogin = this.formBuilder.group({
-      username: new FormControl('', [
+      username: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      password: new FormControl('', [
+      password: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(4)
       ])

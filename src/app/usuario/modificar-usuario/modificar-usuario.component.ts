@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Vehicle} from '../../../model/Vehicle';
 import {Usuario} from '../../../model/Usuario';
 import {Role} from '../../../model/Role';
@@ -15,7 +15,7 @@ import {NewUsuario} from '../../../model/NewUsuario';
 })
 export class ModificarUsuarioComponent implements OnInit {
 
-  crearUsuario: FormGroup;
+  crearUsuario: UntypedFormGroup;
   labelAccion = 'Crear';
   vehiculos: Vehicle[] = [];
   vehiculoSeleccionado: Vehicle;
@@ -35,24 +35,24 @@ export class ModificarUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crearUsuario = new FormGroup({
-      name: new FormControl('', [
+    this.crearUsuario = new UntypedFormGroup({
+      name: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      code: new FormControl('', [
+      code: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      phoneNumber: new FormControl('', [
+      phoneNumber: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      email: new FormControl('', [
+      email: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      type: new FormControl('USER', [
+      type: new UntypedFormControl('USER', [
         Validators.required,
         Validators.minLength(5),
       ]),

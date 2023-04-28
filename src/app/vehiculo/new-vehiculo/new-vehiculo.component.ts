@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Vehicle} from '../../../model/Vehicle';
 import {VehiculoService} from '../../../service/vehiculo.service';
 import {Router} from '@angular/router';
@@ -13,7 +13,7 @@ import {MessageService} from 'primeng';
 })
 export class NewVehiculoComponent implements OnInit {
 
-  crearVehiculo: FormGroup;
+  crearVehiculo: UntypedFormGroup;
   labelAccion = 'Crear';
   idVehiculo: number;
   photoVehicle: any[] = [];
@@ -32,32 +32,32 @@ export class NewVehiculoComponent implements OnInit {
               private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.crearVehiculo = new FormGroup({
-      placa: new FormControl('', [
+    this.crearVehiculo = new UntypedFormGroup({
+      placa: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      make: new FormControl('', [
+      make: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      color: new FormControl('', [
+      color: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      type: new FormControl('', [
+      type: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      photoVehicle: new FormControl('', [
+      photoVehicle: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      photoLicense: new FormControl('', [
+      photoLicense: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      photoIDOwner: new FormControl('', [
+      photoIDOwner: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),

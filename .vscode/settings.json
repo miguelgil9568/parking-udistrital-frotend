@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/82bd11f5-01eb-47aa-a485-b769b860fdd4/resourceGroups/sqlProyectoParkingUD/providers/Microsoft.Web/sites/Parking-Frontend",
+    "appService.deploySubpath": "dist"
+}
