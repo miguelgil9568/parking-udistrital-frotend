@@ -13,6 +13,7 @@ export class UsuarioComponent implements OnInit {
   ismodificar: boolean = false;
   usuarioSeleccionado: Usuario;
   visible = false;
+  loading = true;
   photoUsuario: any[] = [];
 
   constructor(private  usuarioService: UsuarioService) { }
@@ -20,6 +21,7 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioService.findAll().subscribe(result => {
       this.usuarios = result;
+      this.loading = false;
     });
     //  = [
     //   { brand: 'Apple', lastYearSale: '51%', thisYearSale: '40%', lastYearProfit: '$54,406.00', thisYearProfit: '$43,342' },

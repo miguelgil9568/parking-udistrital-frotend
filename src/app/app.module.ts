@@ -40,6 +40,9 @@ import { ConsultarVehiculoComponent } from './vehiculo/consultar-vehiculo/consul
 import { ConsultarUsuarioComponent } from './usuario/consultar-usuario/consultar-usuario.component';
 import { ParqueaderoComponent } from './parqueadero/parqueadero.component';
 
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { IndicadorComponent } from './indicador/indicador.component';
+
 // ======= To get access token
 export function tokenGetter() {
   return sessionStorage.getItem('token');
@@ -61,7 +64,8 @@ export function tokenGetter() {
     NewVehiculoComponent,
     ConsultarVehiculoComponent,
     ConsultarUsuarioComponent,
-    ParqueaderoComponent
+    ParqueaderoComponent,
+    IndicadorComponent
   ],
   imports: [
     BrowserModule,

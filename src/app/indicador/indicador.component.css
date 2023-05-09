@@ -1,0 +1,143 @@
+
+
+
+.spinner-indicador-de-carga-govco {
+  display: inline-block;
+  vertical-align: -0.125em;
+  border-radius: 50%;
+  -webkit-animation: .75s linear infinite spinner-border;
+  animation: .75s linear infinite spinner-border;
+  border-color: #0B457F;
+  border-style: solid;
+  border-right-color: transparent;
+  position: relative;
+}
+
+/* style button trigger spinner */
+.btn-govco {
+  margin: 0px auto !important;
+  display: block !important;
+  border-radius: 25px !important;
+  background-color: #3366cc !important;
+  border: 2px solid #3366cc !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+  font-size: 1rem !important;
+  line-height: 0.5rem !important;
+}
+
+.btn-govco.btn-contorno {
+  border: 2px solid #3366cc !important;
+  background-color: transparent !important;
+  color: #3366cc !important;
+}
+
+.btn-govco.btn-inverso {
+  background-color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  color: #3366cc !important;
+}
+
+.btn-govco.btn-inverso-contorno {
+  border: 2px solid #ffffff !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+.btn-govco img {
+  max-width: 1.5rem !important;
+  max-height: 1.5rem !important;
+}
+
+.btn-govco.mixto-govco {
+  white-space: nowrap;
+  padding-left: 1rem !important;
+  padding-bottom: 0.44rem !important;
+  padding-top: 0.44rem !important;
+}
+
+.btn-loader {
+  width: 214px;
+  padding: 4px!important;
+  height: 43px;
+  font-family: WorkSans-Medium;
+  margin-left: 0.3rem!important;
+}
+
+.btn-loader:hover {
+  border: 1.5px solid #004884!important;
+  background-color: #004884!important;
+  color: #FFFFFF!important;
+}
+
+.btn-loader:focus-visible, .btn-loader:focus {
+  outline: max(0.125rem, 0.15em) solid #000000 !important;
+  outline-offset: max(0.125rem, 0.15em);
+  border: 1.5px solid #004884!important;
+  background-color: #004884!important;
+  color: #FFFFFF!important;
+  box-shadow: none;
+}
+/* end style button trigger spinner */
+
+.container-indicador-de-carga-govco {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-modal-indicador-de-carga-govco {
+  background-color: #FFFFFF;
+  border-radius: 10.31px;
+  position: fixed;
+  z-index: 1055;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 150px;
+}
+
+.spinner-modal-govco {
+  display: none;
+}
+
+.backdrop-govco {
+  opacity: .2!important;
+}
+
+@media (min-width: 500px) {
+  .spinner-modal-indicador-de-carga-govco {
+    width: 400px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 800px) {
+  .spinner-modal-indicador-de-carga-govco {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .spinner-modal-indicador-de-carga-govco {
+    width: 700px;
+    height: 500px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .spinner-modal-indicador-de-carga-govco {
+    width: 800px;
+    height: 600px;
+  }
+}

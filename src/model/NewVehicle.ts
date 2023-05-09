@@ -2,6 +2,7 @@ import {Usuario} from './Usuario';
 
 export interface NewVehicle {
   codeUser: string;
+  id: number;
   type: string;
   make: string;
   placa: number;

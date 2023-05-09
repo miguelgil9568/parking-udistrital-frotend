@@ -6,6 +6,7 @@ import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'src/util/notificaction.service';
 import {MessageService} from 'primeng';
+import {IndicadorComponent} from '../indicador/indicador.component';
 
 @Component({
   selector: 'app-login',
@@ -31,8 +32,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor( private formBuilder: UntypedFormBuilder,
                private loginService: LoginService,
                private router: Router,
-               private notificationsService:NotificationsService,
-               private messageService: MessageService) {
+               private notificationsService: NotificationsService,
+               private messageService: MessageService,
+               private indicadorComponent: IndicadorComponent) {
   }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       username: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
+
       ]),
       password: new UntypedFormControl('', [
         Validators.required,
@@ -64,6 +67,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   public login(){
+    this.indicadorComponent.showSpinner(true);
+
     console.log('ingreso');
     this.auth = this.formLogin.value;
     this.loginService.login(this.auth).subscribe(result =>{
@@ -72,8 +77,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.viewHome= false;
       this.viewLogin= true;
       this.notificationsService.info('Usuario correcto',  result.mensaje);
-      this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvenido al sistema'});
+        this.indicadorComponent.showSpinner(false);
+        this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvenido al sistema'});
     },error => {
+      this.indicadorComponent.showSpinner(false);
       this.messageService.add({severity: 'error', summary: 'Error', detail: 'Clave o usuario incorrecto'});
       console.log('Error');
      }

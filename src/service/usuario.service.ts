@@ -73,8 +73,8 @@ export class UsuarioService {
     );
   }
 
-  upload(id, formdata: FormData): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + '/api/storage/upload-file-azure?id=' + id, formdata).pipe(
+  upload(id, tipo, formdata: FormData): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/storage/upload-file-azure?id=' + id + '&nameEntityParam=' + tipo , formdata).pipe(
       tap(
         success => { return success },
         error => {

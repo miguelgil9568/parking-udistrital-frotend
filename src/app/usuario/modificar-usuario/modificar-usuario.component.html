@@ -54,15 +54,12 @@
       <div class="row">
         <div class="form-group col-md-12">
           <label for="photoVehicle"  >Foto personal *</label>
-<!--          <p-fileUpload name="demo[]" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">-->
-<!--            <ng-template pTemplate="content">-->
-<!--              <ul *ngIf="photoUsuario">-->
-<!--                <li *ngFor="let file of photoUsuario">{{file.name}} - {{file.size}} bytes</li>-->
-<!--              </ul>-->
-<!--            </ng-template>-->
-<!--          </p-fileUpload>-->
+          <p-fileUpload name="demo[]" accept="image/*" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">
+            <ng-template pTemplate="content">
+            </ng-template>
+          </p-fileUpload>
 
-          <input id="photoVehicle" type="file" (change)="onUpload($event)">
+<!--          <input id="photoVehicle"  type="file" class="form-control" (change)="onUpload($event)">-->
         </div>
       </div>
       <br>

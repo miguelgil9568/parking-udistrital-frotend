@@ -51,7 +51,7 @@ export class VehiculoService {
     );
   }
 
-  updateVehicle(id, vehicle: Vehicle): Observable<any> {
+  updateVehicle(id, vehicle: NewVehicle): Observable<any> {
     return this.http.put<any>(EndPointsConstants.URL_ENDPOINT + 'api/vehicle/update/' + id, vehicle).pipe(
       tap(
         success => { return success },

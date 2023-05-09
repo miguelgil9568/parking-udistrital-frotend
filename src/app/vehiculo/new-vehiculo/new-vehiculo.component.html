@@ -48,10 +48,9 @@
     <div class="row">
       <div class="form-group col-md-12">
         <label for="photoVehicle"  >Foto del vehiculo *</label>
-        <p-fileUpload name="demo[]" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">
+        <p-fileUpload name="demo[]" accept="image/*" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">
           <ng-template pTemplate="content">
             <ul *ngIf="photoVehicle">
-              <li *ngFor="let file of photoVehicle">{{file.name}} - {{file.size}} bytes</li>
             </ul>
           </ng-template>
         </p-fileUpload>
@@ -60,10 +59,9 @@
     <div class="row">
       <div class="form-group col-md-12">
         <label for="photoLicense"  >Foto del licencia *</label>
-        <p-fileUpload name="demo2[]" multiple="multiple" [auto]="true"  id="photoLicense" (onSelect)="onUpload2($event)">
+        <p-fileUpload name="demo2[]" accept="image/*" multiple="multiple" [auto]="true"  id="photoLicense" (onSelect)="onUpload2($event)">
           <ng-template pTemplate="content">
             <ul *ngIf="photoLicense">
-              <li *ngFor="let file of photoLicense">{{file.name}} - {{file.size}} bytes</li>
             </ul>
           </ng-template>
         </p-fileUpload>
@@ -72,10 +70,9 @@
     <div class="row">
       <div class="form-group col-md-12">
         <label for="photoIDOwner"  >Foto del carnet estudiantil *</label>
-        <p-fileUpload name="demo3[]"  multiple="multiple" [auto]="true"  id="photoIDOwner" (onSelect)="onUpload3($event)">
+        <p-fileUpload name="demo3[]"  accept="image/*" multiple="multiple" [auto]="true"  id="photoIDOwner" (onSelect)="onUpload3($event)">
           <ng-template pTemplate="content">
             <ul *ngIf="photoIDOwner">
-              <li *ngFor="let file of photoIDOwner">{{file.name}} - {{file.size}} bytes</li>
             </ul>
           </ng-template>
         </p-fileUpload>
@@ -111,7 +108,7 @@
 <!--    <br>-->
     <div class=" mx-auto text-end">
       <button pButton class="ui-button-secondary mx-2"  label="Cancelar" (click)="updateEvent.emit(true);" ></button>
-      <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="setVehiculo()" ></button>
+      <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="labelAccion == 'Crear' ? create() :update()" ></button>
     </div>
   </form>
 </div>
