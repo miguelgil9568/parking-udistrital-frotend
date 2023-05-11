@@ -1,3 +1,5 @@
+<h1>Usuarios</h1>
+<br>
 <p-table [value]="usuarios" *ngIf="!ismodificar" [loading]="loading" [scrollable]="true" [responsive]="true" #dt scrollHeight="flex" [rowHover]="true" styleClass="ui-table-customers"
          [filterDelay]="0" [globalFilterFields]="['name','email','type','code','phoneNumber']">
   <ng-template pTemplate="caption">
@@ -18,6 +20,7 @@
   <ng-template pTemplate="body" let-usuario>
     <tr class="ui-selectable-row">
       <td class="ui-column-title"> <span [class]="'flag flag-' + usuario.name"></span>
+        <img [alt]="usuario.name" src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{usuario == null ? '' : usuario.photo}}" width="32" style="vertical-align: middle"  />
         <span style="vertical-align: middle; margin-left: .5em">{{usuario.name}}</span>
       </td>
       <td class="ui-column-title"> <span [class]="'flag flag-' + usuario.email"></span>
@@ -37,6 +40,7 @@
                 (click)="changeModificar(usuario)"></button>
         <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-search-plus"
                 (click)="visible = true; usuarioSeleccionado = usuario"></button>
+<!--        <p-inputSwitch [(ngModel)]="usuario.enable"></p-inputSwitch>-->
       </td>
     </tr>
   </ng-template>
