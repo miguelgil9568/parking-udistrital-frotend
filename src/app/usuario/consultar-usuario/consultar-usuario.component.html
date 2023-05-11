@@ -1,4 +1,4 @@
-<p-dialog header="Consulta por usuario" [(visible)]="visible" [style]="{width: '50%'}">
+<p-dialog header="Consulta por usuario" [(visible)]="visible" [style]="{width: '60%'}">
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
 
     <h2>Datos del usuario  </h2>
@@ -59,7 +59,13 @@
   </div>
   <br>
   <h3>Vehiculos </h3>
-  <p-table [value]="usuario.vehicles"  >
+  <p-table [value]="usuario.vehicles" dataKey="id"  [scrollable]="true" [responsive]="true" #dt scrollHeight="flex" [rowHover]="true" styleClass="ui-table-customers"
+           [filterDelay]="0" [globalFilterFields]="['placa','codeUser','make','color','createAt']">
+    <ng-template pTemplate="caption">
+      <div class="ui-table-globalfilter-container">
+        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Busqueda Global"  style="width:auto"/>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
         <th>Codigo</th>
@@ -82,7 +88,10 @@
         </td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="footer">
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8" style="text-align:left">Sin vehiculos asignados</td>
+      </tr>
     </ng-template>
   </p-table>
 </p-dialog>

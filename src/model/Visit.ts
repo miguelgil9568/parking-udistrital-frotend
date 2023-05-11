@@ -9,7 +9,7 @@ export class Visit {
   idparkinglot: number;
   idoper: number;
   created: Date;
-  entryuser: Date;
-  exituser: Date;
+  entryuser: string;
+  exituser: string;
   minutesparking: number;
 }

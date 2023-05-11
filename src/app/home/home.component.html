@@ -63,11 +63,17 @@
           </p-calendar>
         </div>
       </div>
+      <label for="Vehicle">Hora de salida</label>
+      <div class="row " >
+          <div class="form-group col-md-12">
+            <p-calendar  style="justify-content: space-around!important;display: flex;" [(ngModel)]="horaSeleccionado" [timeOnly]="true" ></p-calendar>
+          </div>
+        </div>
+
       <div class="d-table justify-content-around mt-3 mx-auto   ">
         <button pButton label="Reservar " (click)="reservar()"
                 [disabled]="vehiculoSeleccionado == null"></button>
       </div>
-
 <!--    </form>-->
   </div>
 </p-dialog>

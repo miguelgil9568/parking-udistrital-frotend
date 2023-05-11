@@ -93,8 +93,8 @@ export class ModificarUsuarioComponent implements OnInit {
     newUser.Photo = photo;
     this.usuarioService.registerNewUser(newUser, formData).subscribe(
       response => {
-        console.log(response.Usuario.id);
-        this.usuarioService.upload(response.Usuario.id,'user', formData).subscribe(result => {
+        console.log(response.id);
+        this.usuarioService.upload(response.id,'user', formData).subscribe(result => {
           this.updateEvent.emit(true);
           this.messageService.add({severity: 'success', summary: 'Usuario ' +  this.labelAccion, detail: 'Usuario ' + this.labelAccion + ' con exito'});
         });

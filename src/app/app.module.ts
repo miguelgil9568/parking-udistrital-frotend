@@ -3,7 +3,7 @@ import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {TableModule} from 'primeng/table';
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -111,7 +111,8 @@ export function tokenGetter() {
     {provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true},
-    MessageService
+    MessageService,
+    DatePipe
     ],
   bootstrap: [AppComponent]
 })

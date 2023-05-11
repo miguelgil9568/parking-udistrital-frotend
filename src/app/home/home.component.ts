@@ -7,6 +7,7 @@ import {UsuarioService} from '../../service/usuario.service';
 import {Vehicle} from '../../model/Vehicle';
 import {Visit} from '../../model/Visit';
 import {Usuario} from '../../model/Usuario';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
   vehiculos: Vehicle[];
   vehiculoSeleccionado: number = null ;
   dateSeleccionado: Date = new Date();
+  horaSeleccionado: Date = new Date();
   dateHoy: Date = new Date();
   visit: Visit = new Visit();
   user: Usuario;
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
               private messageService: MessageService,
               private vehiculoService: VehiculoService,
               private usuarioService: UsuarioService,
+              public  datePipe: DatePipe
               ) { }
 
   ngOnInit(): void {
@@ -71,10 +74,10 @@ export class HomeComponent implements OnInit {
   }
 
   reservar(){
-    this.visit.entryuser = this.dateSeleccionado;
+    this.visit.entryuser = this.datePipe.transform(this.dateSeleccionado, 'yyyy-MM-dd hh:mm:ss') ;
+    this.visit.exituser = this.datePipe.transform(this.horaSeleccionado, 'yyyy-MM-dd hh:mm:ss');
     this.visit.iduser =  this.user.id;
     this.visit.idvehicle =  this.vehiculoSeleccionado;
-    console.log('this.parkingSeleccionado = ' + this.parkingSeleccionado);
     this.visit.idparkinglot =  this.parkingSeleccionado.id;
     this.visit.idoper =  1;
     this.indicadoresService.newVisit(this.visit).subscribe(result => {

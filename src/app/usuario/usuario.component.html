@@ -1,4 +1,10 @@
-<p-table [value]="usuarios" *ngIf="!ismodificar" [loading]="loading" [rowHover]="true" dataKey="id" styleClass="ui-table-customers" [rowHover]="true">
+<p-table [value]="usuarios" *ngIf="!ismodificar" [loading]="loading" [scrollable]="true" [responsive]="true" #dt scrollHeight="flex" [rowHover]="true" styleClass="ui-table-customers"
+         [filterDelay]="0" [globalFilterFields]="['name','email','type','code','phoneNumber']">
+  <ng-template pTemplate="caption">
+    <div class="ui-table-globalfilter-container">
+      <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Busqueda Global"  style="width:auto"/>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th>Nombre</th>
