@@ -40,8 +40,8 @@ export class VehiculoService {
   }
 
 
-  registerVehicle(newVehicle: NewVehicle): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/vehicle/new-vehicle/3', newVehicle).pipe(
+  registerVehicle(id, newVehicle: NewVehicle): Observable<any> {
+    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/vehicle/new-vehicle/' + id, newVehicle).pipe(
       tap(
         success => { return success },
         error => {

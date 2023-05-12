@@ -110,7 +110,7 @@ export class NewVehiculoComponent implements OnInit {
   public create(): void {
     this.vehiculoSeleccionado = this.crearVehiculo.value;
     this.usuarioService.findAllbyEmail(JSON.parse(sessionStorage.getItem('token')).username).subscribe(value => {
-      this.vehiculoService.registerVehicle(this.vehiculoSeleccionado).subscribe(
+      this.vehiculoService.registerVehicle(value.id, this.vehiculoSeleccionado).subscribe(
         response => {
           console.log(response);
           let formData = new FormData();
