@@ -17,7 +17,7 @@ export class LoginService {
   }
 
   login(authData: Auth): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/login', authData).pipe(
+    return this.http.post<any>(  'api/login', authData).pipe(
       tap(
         success => { return success },
         error => {

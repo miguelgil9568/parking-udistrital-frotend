@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {Vehicle} from '../../../model/Vehicle';
-import {VehiculoService} from '../../../service/vehiculo.service';
+import {Vehicle} from '../../../../../../model/Vehicle';
+import {VehiculoService} from '../../../../../../service/vehiculo.service';
 import {Router} from '@angular/router';
-import {NewVehicle} from '../../../model/NewVehicle';
+import {NewVehicle} from '../../../../../../model/NewVehicle';
 import {MessageService} from 'primeng';
-import {UsuarioService} from '../../../service/usuario.service';
+import {UsuarioService} from '../../../../../../service/usuario.service';
 
 @Component({
   selector: 'app-new-vehiculo',

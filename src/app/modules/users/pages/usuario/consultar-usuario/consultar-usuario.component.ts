@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Vehicle} from '../../../model/Vehicle';
-import {Usuario} from '../../../model/Usuario';
+import {Vehicle} from '../../../../../../model/Vehicle';
+import {Usuario} from '../../../../../../model/Usuario';
 
 @Component({
   selector: 'app-consultar-usuario',

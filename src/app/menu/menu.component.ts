@@ -26,7 +26,12 @@ export class MenuComponent implements OnInit {
     this.items = [
       {
         icon: 'pi pi-home',
-        routerLink: [{ outlets: { rdash: [''] } }]
+        routerLink: ['/app/']
+      },
+      {
+        icon: 'pi pi-calendar-plus',
+        label: 'Mi agenda',
+        routerLink: ['/app/miAgenda']
       },
       {
         label: 'Usuarios',
@@ -35,12 +40,12 @@ export class MenuComponent implements OnInit {
         items: [{
             label: 'Consulta',
             icon: 'pi pi-users',
-            routerLink: [{ outlets: { rdash: ['usuario'] } }],
+            routerLink: ['/app/','usuario'],
             visible: this.validarPermisos('ROLE_ADMIN'),
             },{
             label: 'Agregar ',
             icon: 'pi pi-search-plus',
-            routerLink: [{ outlets: { rdash: ['modusuario'] } }],
+            routerLink: ['/app/','modusuario'],
             visible: this.validarPermisos('ROLE_ADMIN'),
           },
           {
@@ -57,12 +62,12 @@ export class MenuComponent implements OnInit {
         items: [
           {label: 'Consulta',
             icon: 'pi pi-car',
-            routerLink: [{ outlets: { rdash: ['vehiculo'] } }],
+            routerLink: ['/app/','vehiculo'],
             // visible: this.validarPermisos('ROLE_ADMIN'),
           },
           {label: 'Agregar ',
             icon: 'pi pi-search-plus',
-            routerLink: [{ outlets: { rdash: ['modvehiculo'] } }],
+            routerLink: ['/app/','modvehiculo'],
           }
         ]
       },
@@ -73,7 +78,8 @@ export class MenuComponent implements OnInit {
         items: [
           {label: 'Consulta', icon: 'pi pi-map',
             visible: this.validarPermisos('ROLE_ADMIN'),
-            routerLink: [{ outlets: { rdash: ['parqueadero'] } }],},
+            routerLink: ['/app/','parqueadero'],
+          },
         ]
       },
       {

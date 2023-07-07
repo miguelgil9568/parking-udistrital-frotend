@@ -20,7 +20,7 @@
   <ng-template pTemplate="body" let-usuario>
     <tr class="ui-selectable-row">
       <td class="ui-column-title"> <span [class]="'flag flag-' + usuario.name"></span>
-        <img [alt]="usuario.name" src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{usuario == null ? '' : usuario.photo}}" width="32" style="vertical-align: middle"  />
+        <img  src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{usuario == null ? '' : usuario.photo}}" width="32" style="vertical-align: middle"  />
         <span style="vertical-align: middle; margin-left: .5em">{{usuario.name}}</span>
       </td>
       <td class="ui-column-title"> <span [class]="'flag flag-' + usuario.email"></span>

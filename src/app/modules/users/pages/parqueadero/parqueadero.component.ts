@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Parqueadero} from '../../model/Parqueadero';
-import {VehiculoService} from '../../service/vehiculo.service';
-import {UsuarioService} from '../../service/usuario.service';
-import {EndPointsConstants} from '../../util/endpointsConstants-contast';
-import {ParqueaderoService} from '../../service/parqueadero.service';
+import {Parqueadero} from '../../../../../model/Parqueadero';
+import {UsuarioService} from '../../../../../service/usuario.service';
+import {ParqueaderoService} from '../../../../../service/parqueadero.service';
 
 @Component({
   selector: 'app-parqueadero',
@@ -19,14 +17,13 @@ export class ParqueaderoComponent implements OnInit {
   images: any[]= [] ;
   data : any;
   display: boolean = false;
-  labelTitulo= 'Vehiculos'
 
 
   constructor(private parqueaderoService: ParqueaderoService,
               private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
-
+      debugger;
       this.parqueaderoService.findAll().subscribe(result => {
         this.parqueaderos = result;
       });

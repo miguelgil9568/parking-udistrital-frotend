@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IndicadoresService} from '../../service/Indicadores.service';
+import {IndicadoresService} from '../../../../../service/Indicadores.service';
 import {Message, MessageService} from 'primeng';
-import {StattusCapacity} from '../../model/StattusCapacity';
-import {VehiculoService} from '../../service/vehiculo.service';
-import {UsuarioService} from '../../service/usuario.service';
-import {Vehicle} from '../../model/Vehicle';
-import {Visit} from '../../model/Visit';
-import {Usuario} from '../../model/Usuario';
+import {StattusCapacity} from '../../../../../model/StattusCapacity';
+import {VehiculoService} from '../../../../../service/vehiculo.service';
+import {UsuarioService} from '../../../../../service/usuario.service';
+import {Vehicle} from '../../../../../model/Vehicle';
+import {Visit} from '../../../../../model/Visit';
+import {Usuario} from '../../../../../model/Usuario';
 import { DatePipe } from '@angular/common';
 
 @Component({

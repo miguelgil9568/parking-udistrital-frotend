@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Vehicle} from '../../../model/Vehicle';
+import {Vehicle} from '../../../../../../model/Vehicle';
 
 @Component({
   selector: 'app-consultar-vehiculo',

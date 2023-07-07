@@ -6,15 +6,12 @@ import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'src/util/notificaction.service';
 import {MessageService} from 'primeng';
-import {IndicadorComponent} from '../indicador/indicador.component';
+import {IndicadorComponent} from '../modules/users/pages/indicador/indicador.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
-})
-@Injectable({
-  providedIn: 'root'
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
@@ -25,8 +22,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   username = '';
   password = '';
   formLogin: UntypedFormGroup;
-  viewLogin: boolean;
-  viewHome: boolean;
+  viewLogin :boolean;
   item: any;
 
   constructor( private formBuilder: UntypedFormBuilder,
@@ -38,8 +34,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.viewHome= true;
-    this.viewLogin= false;
+    //this.viewHome= true;
+    //this.viewLogin= false;
     this.formLogin = this.formBuilder.group({
       username: new UntypedFormControl('', [
         Validators.required,
@@ -51,19 +47,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
         Validators.minLength(4)
       ])
     });
+    if (JSON.parse(sessionStorage.getItem('token')) !== null) {
+      this.viewLogin = true;
+      this.router.navigate(['/usuario']);
+    } else {
+      this.viewLogin = false;
+    }
   }
 
   ngAfterViewInit() {
-      if ((sessionStorage.getItem('token')) !== null ) {
-        this.viewHome= false;
-        this.viewLogin= true;
-        this.router.navigate(['/app/dashboard']);
-        return true;
-      } else {
-        this.viewHome= true;
-        this.viewLogin= false;
-        return false;
-      }
+    setTimeout(() => {
+
+    },0);
   }
 
   public login(){
@@ -72,9 +67,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log('ingreso');
     this.auth = this.formLogin.value;
     this.loginService.login(this.auth).subscribe(result =>{
-      this.router.navigate(['/app/dashboard']);
+      this.router.navigate(['/app']);
       sessionStorage.setItem('token', JSON.stringify(result));
-      this.viewHome= false;
       this.viewLogin= true;
       this.notificationsService.info('Usuario correcto',  result.mensaje);
         this.indicadorComponent.showSpinner(false);
@@ -89,7 +83,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   cambio(){
     console.log('ingreso');
-    this.viewHome= false;
     this.viewLogin= true;
     this.router.navigate(['/sign']);
   }

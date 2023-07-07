@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
-import {Vehicle} from '../../../model/Vehicle';
-import {Usuario} from '../../../model/Usuario';
-import {Role} from '../../../model/Role';
-import {UsuarioService} from '../../../service/usuario.service';
+import {Vehicle} from '../../../../../../model/Vehicle';
+import {Usuario} from '../../../../../../model/Usuario';
+import {Role} from '../../../../../../model/Role';
+import {UsuarioService} from '../../../../../../service/usuario.service';
 import {Route, Router} from '@angular/router';
 import {MessageService} from 'primeng';
-import {NewUsuario} from '../../../model/NewUsuario';
+import {NewUsuario} from '../../../../../../model/NewUsuario';
 
 @Component({
   selector: 'app-modificar-usuario',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Vehicle} from '../../model/Vehicle';
+import {Vehicle} from '../../../../../model/Vehicle';
 import { VehiculoService } from 'src/service/vehiculo.service';
-import {EndPointsConstants} from '../../util/endpointsConstants-contast';
-import {Image} from '../../model/image';
-import {UsuarioService} from '../../service/usuario.service';
+import {EndPointsConstants} from '../../../../../util/endpointsConstants-contast';
+import {Image} from '../../../../../model/image';
+import {UsuarioService} from '../../../../../service/usuario.service';
 
 @Component({
   selector: 'app-vehiculo',
