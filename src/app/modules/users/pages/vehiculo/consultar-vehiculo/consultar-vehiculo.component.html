@@ -48,11 +48,11 @@
   <h3>Fotos </h3>
   <div class="row">
     <img class="col-md-4"
-      src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{vehiculo == null ? '' : vehiculo.photoVehicle}}"/>
+      src="{{url}}{{vehiculo == null ? '' : vehiculo.photoVehicle}}"/>
     <img class="col-md-4"
-      src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{vehiculo == null ? '' : vehiculo.photoLicense}}"/>
+      src="{{url}}{{vehiculo == null ? '' : vehiculo.photoLicense}}"/>
     <img class="col-md-4"
-      src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{vehiculo == null ? '' : vehiculo.photoIDOwner}}"/>
+      src="{{url}}{{vehiculo == null ? '' : vehiculo.photoIDOwner}}"/>
   </div>
   <!--  {{images[0].previewImageSrc}}-->
 

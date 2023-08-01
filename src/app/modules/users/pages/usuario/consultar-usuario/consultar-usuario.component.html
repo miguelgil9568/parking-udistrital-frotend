@@ -3,7 +3,7 @@
 
     <h2>Datos del usuario  </h2>
     <div class="d-flex justify-content-around my-3">
-        <img style="width: 190px" src="https://uploadsphotos.blob.core.windows.net/uploads-photos/{{usuario == null ? '' : usuario.photo}}">
+        <img style="width: 190px" src="{{url}}{{usuario == null ? '' : usuario.photo}}">
     </div>
 
     <div class="ui-grid-row">

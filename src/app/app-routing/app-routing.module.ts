@@ -11,8 +11,8 @@ import {VehiculoComponent} from '../modules/users/pages/vehiculo/vehiculo.compon
 import {NewVehiculoComponent} from '../modules/users/pages/vehiculo/new-vehiculo/new-vehiculo.component';
 import {RoleGuardService} from '../../service/role-guard.service';
 import {ParqueaderoComponent} from '../modules/users/pages/parqueadero/parqueadero.component';
-import {SessionGuard} from '../app-routing/session.guard'
-import { SessionLoginGuard } from './sessionLogin.guard';
+import {SessionGuard} from '../util/session.guard'
+import { SessionLoginGuard } from '../util/sessionLogin.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [SessionLoginGuard]},

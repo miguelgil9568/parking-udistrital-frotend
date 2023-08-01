@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Vehicle} from '../../../../../../model/Vehicle';
+import {EndPointsConstants} from '../../../../../../util/endpointsConstants-contast';
 
 @Component({
   selector: 'app-consultar-vehiculo',
@@ -12,6 +13,8 @@ export class ConsultarVehiculoComponent implements OnInit , OnChanges{
   vehiculo: Vehicle;
 
   visible: boolean;
+
+  url= EndPointsConstants.URL_ENDPOINT_FILE;
 
   constructor() { }
 
