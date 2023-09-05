@@ -18,7 +18,7 @@ export class VehiculoService {
   }
 
   findAll(): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>(  'api/vehicle').pipe(
+    return this.http.get<Vehicle[]>(  EndPointsConstants.URL_ENDPOINT + 'api/vehicle').pipe(
       tap(
         success => { return success },
         error => {
@@ -29,7 +29,7 @@ export class VehiculoService {
   }
 
   findAllbyUser(idUser): Observable<Vehicle[]> {
-    return this.http.get<Vehicle[]>( 'api/vehicle/code/'+ idUser).pipe(
+    return this.http.get<Vehicle[]>( EndPointsConstants.URL_ENDPOINT + 'api/vehicle/code/'+ idUser).pipe(
       tap(
         success => { return success },
         error => {
@@ -41,7 +41,7 @@ export class VehiculoService {
 
 
   registerVehicle(id, newVehicle: NewVehicle): Observable<any> {
-    return this.http.post<any>( 'api/vehicle/new-vehicle/' + id, newVehicle).pipe(
+    return this.http.post<any>( EndPointsConstants.URL_ENDPOINT + 'api/vehicle/new-vehicle/' + id, newVehicle).pipe(
       tap(
         success => { return success },
         error => {
@@ -52,7 +52,7 @@ export class VehiculoService {
   }
 
   updateVehicle(id, vehicle: NewVehicle): Observable<any> {
-    return this.http.put<any>(  'api/vehicle/update/' + id, vehicle).pipe(
+    return this.http.put<any>(  EndPointsConstants.URL_ENDPOINT + 'api/vehicle/update/' + id, vehicle).pipe(
       tap(
         success => { return success },
         error => {
@@ -63,7 +63,7 @@ export class VehiculoService {
   }
 
   upload(id, formdata: FormData): Observable<any> {
-    return this.http.post<any>(  'api/user/update? id= ' + id, formdata).pipe(
+    return this.http.post<any>(  EndPointsConstants.URL_ENDPOINT + 'api/user/update? id= ' + id, formdata).pipe(
       tap(
         success => { return success },
         error => {

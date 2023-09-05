@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://java-parking-backend.azurewebsites.net'
+
+
 };

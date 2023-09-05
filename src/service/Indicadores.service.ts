@@ -20,7 +20,7 @@ export class IndicadoresService {
   }
 
   vehiculos(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(  'api/visits/vehicle').pipe(
+    return this.http.get<Usuario[]>(  EndPointsConstants.URL_ENDPOINT +'api/visits/vehicle').pipe(
       tap(
         success => { return success },
         error => {
@@ -31,7 +31,7 @@ export class IndicadoresService {
   }
 
   capacity(): Observable<StattusCapacity[]> {
-    return this.http.get<StattusCapacity[]>( 'api/visits/capacity-status').pipe(
+    return this.http.get<StattusCapacity[]>( EndPointsConstants.URL_ENDPOINT +  'api/visits/capacity-status').pipe(
       tap(
         success => {
           return success;
@@ -45,7 +45,7 @@ export class IndicadoresService {
 
 
   usuarios(): Observable<any> {
-    return this.http.get<any>(  'api/visits/user').pipe(
+    return this.http.get<any>( EndPointsConstants.URL_ENDPOINT +   'api/visits/user').pipe(
       tap(
         success => { return success },
         error => {
@@ -57,7 +57,7 @@ export class IndicadoresService {
 
 
   newVisit(visit): Observable<any> {
-    return this.http.post<any>(  'api/visits/reserve', visit).pipe(
+    return this.http.post<any>(  EndPointsConstants.URL_ENDPOINT + 'api/visits/reserve', visit).pipe(
       tap(
         success => { return success },
         error => {
@@ -68,7 +68,7 @@ export class IndicadoresService {
   }
 
   findVisitxUser(user: number): Observable<Visit[]> {
-    return this.http.get<Visit[]>(  'api/visits/find-user/' + user).pipe(
+    return this.http.get<Visit[]>(  EndPointsConstants.URL_ENDPOINT + 'api/visits/find-user/' + user).pipe(
       tap(
         success => { return success },
         error => {
