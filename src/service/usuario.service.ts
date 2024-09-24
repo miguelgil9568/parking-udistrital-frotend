@@ -8,7 +8,7 @@ import {Usuario} from '../model/Usuario';
 import {NewUsuario} from '../model/NewUsuario';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class UsuarioService {
 
@@ -18,7 +18,7 @@ export class UsuarioService {
   }
 
   findAll(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(EndPointsConstants.URL_ENDPOINT + 'api/user').pipe(
+    return this.http.get<Usuario[]>(  EndPointsConstants.URL_ENDPOINT + 'api/user').pipe(
       tap(
         success => { return success },
         error => {
@@ -52,7 +52,7 @@ export class UsuarioService {
   }
 
   registerNewUser(newUsuario: NewUsuario, formData): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/new-user', newUsuario, formData).pipe(
+    return this.http.post<any>(  EndPointsConstants.URL_ENDPOINT + 'api/user/new-user', newUsuario, formData).pipe(
       tap(
         success => { return success },
         error => {
@@ -63,7 +63,7 @@ export class UsuarioService {
   }
 
   updateUser(id, usuario: Usuario): Observable<any> {
-    return this.http.put<any>(EndPointsConstants.URL_ENDPOINT + 'api/user/update/' + id, usuario).pipe(
+    return this.http.put<any>(  EndPointsConstants.URL_ENDPOINT + 'api/user/update/' + id, usuario).pipe(
       tap(
         success => { return success },
         error => {
@@ -73,8 +73,8 @@ export class UsuarioService {
     );
   }
 
-  upload(id, formdata: FormData): Observable<any> {
-    return this.http.post<any>(EndPointsConstants.URL_ENDPOINT + '/api/storage/upload-file-azure?id=' + id, formdata).pipe(
+  upload(id, tipo, formdata: FormData): Observable<any> {
+    return this.http.post<any>(  EndPointsConstants.URL_ENDPOINT + 'api/storage/upload-file-azure?id=' + id + '&nameEntityParam=' + tipo , formdata).pipe(
       tap(
         success => { return success },
         error => {

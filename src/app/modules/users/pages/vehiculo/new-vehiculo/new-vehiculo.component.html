@@ -1,0 +1,114 @@
+<div class="container tab-content" id="nav-tabContent" style="border: none;">
+  <h2>{{labelAccion}} vehiculo</h2>
+  <form [formGroup]="crearVehiculo">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="placa"  >Placa *</label>
+        <input id="placa" [ngClass]="crearVehiculo.controls['placa'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+               formControlName="placa" placeholder="Placa" pInputText >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="make"  >Marca *</label>
+        <input id="make" [ngClass]="crearVehiculo.controls['make'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+               formControlName="make" placeholder="Marca" pInputText >
+      </div>
+    </div>
+    <!--      <div class="row">-->
+    <!--        <div class="form-group col-md-6">-->
+    <!--          <label for="name"  >Nombre *</label>-->
+    <!--          <input id="name" [ngClass]="crearVehiculo.controls['name'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"-->
+    <!--                 formControlName="name" placeholder="nombre completo" pInputText >-->
+    <!--        </div>-->
+    <!--        <div class="form-group col-md-6">-->
+    <!--          <label for="code"  >Codigo institucional *</label>-->
+    <!--          <input id="code" [ngClass]="crearVehiculo.controls['code'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"-->
+    <!--                 formControlName="code" placeholder="Codigo institucional" pInputText >-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="color"  >Color *</label>
+        <input id="color" [ngClass]="crearVehiculo.controls['color'].invalid ?  'ng-invalid ng-dirty campo-input':'campo-input'" type="text"
+               formControlName="color" placeholder="Color" pInputText >
+      </div>
+      <div class="form-group col-md-6">
+
+        <label for="type">Tipo</label>
+        <select placeholder="Seleccione un tipo" id="type"
+                [ngClass]="crearVehiculo.controls['type'].invalid ?
+                      'ng-invalid ng-dirty campo-input':'campo-input'"
+                optionLabel="nameRole"
+                formControlName="type" >
+          <option selected>Moto</option>
+          <option >Bicicleta</option>
+          <option >Carro</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="photoVehicle"  >Foto del vehiculo *</label>
+        <p-fileUpload name="demo[]" accept="image/*" multiple="multiple" [auto]="true" id="photoVehicle" (onSelect)="onUpload($event)">
+          <ng-template pTemplate="content">
+            <ul *ngIf="photoVehicle">
+            </ul>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="photoLicense"  >Foto del licencia *</label>
+        <p-fileUpload name="demo2[]" accept="image/*" multiple="multiple" [auto]="true"  id="photoLicense" (onSelect)="onUpload2($event)">
+          <ng-template pTemplate="content">
+            <ul *ngIf="photoLicense">
+            </ul>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="photoIDOwner"  >Foto del carnet estudiantil *</label>
+        <p-fileUpload name="demo3[]"  accept="image/*" multiple="multiple" [auto]="true"  id="photoIDOwner" (onSelect)="onUpload3($event)">
+          <ng-template pTemplate="content">
+            <ul *ngIf="photoIDOwner">
+            </ul>
+          </ng-template>
+        </p-fileUpload>
+      </div>
+    </div>
+    <br>
+<!--    <p-table [value]="vehiculos">-->
+<!--      <ng-template pTemplate="header">-->
+<!--        <tr>-->
+<!--          <th>Codigo</th>-->
+<!--          <th>Marca</th>-->
+<!--          <th>Placa</th>-->
+<!--          <th>Color</th>-->
+<!--          <th>Fecha de creacion</th>-->
+<!--          <th>Operacion</th>-->
+<!--        </tr>-->
+<!--      </ng-template>-->
+<!--      <ng-template pTemplate="body" let-vehiculo>-->
+<!--        <tr>-->
+<!--          <td>{{vehiculo.codeUser}}</td>-->
+<!--          <td>{{vehiculo.make}}</td>-->
+<!--          <td>{{vehiculo.placa}}</td>-->
+<!--          <td>{{vehiculo.color}}</td>-->
+<!--          <td>{{vehiculo.createAt}}</td>-->
+<!--          <td class="align-content-center">-->
+<!--            <button pButton type="button" class="ui-button-secondary mx-1" icon="pi pi-trash"></button>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </ng-template>-->
+<!--      <ng-template pTemplate="footer">-->
+<!--      </ng-template>-->
+<!--    </p-table>-->
+<!--    <br>-->
+    <div class=" mx-auto text-end">
+      <button pButton class="ui-button-secondary mx-2"  label="Cancelar" (click)="updateEvent.emit(true);" ></button>
+      <button pButton class="btn btn-round btn-middle mx-2"  label="Finalizar" (click)="labelAccion == 'Crear' ? create() :update()" ></button>
+    </div>
+  </form>
+</div>

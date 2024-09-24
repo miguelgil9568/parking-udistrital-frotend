@@ -1,0 +1,80 @@
+<h1>Bienvenido a la plataforma</h1>
+<br>
+<div class="tab-content container">
+  <p-panel header="Indicador por parqueaderos" [toggleable]="true">
+    <br>
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-6">-->
+    <!--          <h4>Indicador por vehiculos</h4>-->
+    <!--          <p-chart type="pie" [data]="dataVehiculos"></p-chart>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="row">
+      <div *ngFor="let parking of dataParkings; let i = index " class="col-md-6 my-3  " style="border-width: 10px"
+           [ngClass]="i == dataParkings.length-1 && (dataParkings.length) %2 == 1? 'justify-content-around container': ''">
+        <h6><b>{{parking.name}}</b></h6>
+        <p-chart type="pie" [data]="parking"></p-chart>
+        <label class="col-md-4"><b>Disponible: </b> {{valores[i].available}}  </label>
+        <label class="col-md-4"><b>Ocupado: </b> {{valores[i].busy}}  </label>
+        <label class="col-md-4"><b>Agendado: </b> {{valores[i].reserved}}  </label>
+        <div class="d-table justify-content-around mt-3 mx-auto   ">
+          <button pButton label="Reservar " (click)="mostrarDialogo(parking)"
+                  [disabled]="valores[i].available <= 0"></button>
+        </div>
+      </div>
+      <!--      <div class="col-md-6">-->
+      <!--        <h6>Indicador parqueadero motos</h6>-->
+      <!--        <p-chart type="pie" [data]="dataUsuarios"></p-chart>-->
+      <!--      </div>-->
+    </div>
+    <br>
+    <!--    <div class="row">-->
+    <!--      <div class="col-md-6 justify-content-around container" >-->
+    <!--        <h6>Indicador parqueadero bicicletas</h6>-->
+    <!--        <p-chart type="pie" [data]="dataVehiculos"></p-chart>-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </p-panel>
+</div>
+
+<p-dialog header="Reserva" [(visible)]="visible">
+  <div class="container tab-content" style="margin: 10px 0px">
+    <h2>Reserva en parqueadero {{parkingSeleccionado.name}}</h2>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="Vehicle">Seleccione algun vehiculo</label>
+          <select placeholder="Seleccione un tipo" id="Vehicle" class="campo-input"
+                  optionLabel="nameRole" [(ngModel)]="vehiculoSeleccionado"  >
+            <option value="null" selected>Seleccione una opcion</option>
+            <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">{{vehiculo.placa }} - {{vehiculo.type}} - {{vehiculo.make}}
+              - {{vehiculo.color}} </option>
+          </select>
+        </div>
+      </div>
+
+      <label for="Vehicle">Fecha y hora de ingreso</label>
+      <div class="row " >
+        <div class="form-group col-md-12">
+          <p-calendar  style="justify-content: space-around!important;display: flex;" dateMask autoUnmask="true"  [(ngModel)]="dateSeleccionado" [minDate]="dateHoy"  [inline]="true" [showWeek]="true" [showTime]="true">
+            <ng-template pTemplate="date" let-date>
+              <span [ngStyle]="{backgroundColor: (date.day < dateHoy.getDate()+10 && date.day > dateHoy.getDate() ) ? '#81C784' : 'inherit'}"
+                    style="border-radius:50%; padding: .25em; width: 2em; height: 2em; display:block">{{date.day}}</span>
+            </ng-template>
+          </p-calendar>
+        </div>
+      </div>
+      <label for="Vehicle">Hora de salida</label>
+      <div class="row " >
+          <div class="form-group col-md-12">
+            <p-calendar  style="justify-content: space-around!important;display: flex;" [(ngModel)]="horaSeleccionado" [timeOnly]="true" ></p-calendar>
+          </div>
+        </div>
+
+      <div class="d-table justify-content-around mt-3 mx-auto   ">
+        <button pButton label="Reservar " (click)="reservar()"
+                [disabled]="vehiculoSeleccionado == null"></button>
+      </div>
+<!--    </form>-->
+  </div>
+</p-dialog>
+

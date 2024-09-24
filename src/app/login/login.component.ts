@@ -1,19 +1,17 @@
 import {AfterViewInit, Component, Injectable, OnInit} from '@angular/core';
 import {Car} from '../../class/Cars';
 import { Auth } from 'src/model/Auth';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'src/util/notificaction.service';
 import {MessageService} from 'primeng';
+import {IndicadorComponent} from '../modules/users/pages/indicador/indicador.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
-})
-@Injectable({
-  providedIn: 'root'
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
@@ -23,57 +21,60 @@ export class LoginComponent implements OnInit, AfterViewInit {
   cols: any[];
   username = '';
   password = '';
-  formLogin: FormGroup;
-  viewLogin: boolean;
-  viewHome: boolean;
+  formLogin: UntypedFormGroup;
+  viewLogin :boolean;
   item: any;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor( private formBuilder: UntypedFormBuilder,
                private loginService: LoginService,
                private router: Router,
-               private notificationsService:NotificationsService,
-               private messageService: MessageService) {
+               private notificationsService: NotificationsService,
+               private messageService: MessageService,
+               private indicadorComponent: IndicadorComponent) {
   }
 
   ngOnInit() {
-    this.viewHome= true;
-    this.viewLogin= false;
+    //this.viewHome= true;
+    //this.viewLogin= false;
     this.formLogin = this.formBuilder.group({
-      username: new FormControl('', [
+      username: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
+
       ]),
-      password: new FormControl('', [
+      password: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(4)
       ])
     });
+    if (JSON.parse(sessionStorage.getItem('token')) !== null) {
+      this.viewLogin = true;
+      this.router.navigate(['/usuario']);
+    } else {
+      this.viewLogin = false;
+    }
   }
 
   ngAfterViewInit() {
-      if ((sessionStorage.getItem('token')) !== null ) {
-        this.viewHome= false;
-        this.viewLogin= true;
-        this.router.navigate(['/app/dashboard']);
-        return true;
-      } else {
-        this.viewHome= true;
-        this.viewLogin= false;
-        return false;
-      }
+    setTimeout(() => {
+
+    },0);
   }
 
   public login(){
+    this.indicadorComponent.showSpinner(true);
+
     console.log('ingreso');
     this.auth = this.formLogin.value;
     this.loginService.login(this.auth).subscribe(result =>{
-      this.router.navigate(['/app/dashboard']);
+      this.router.navigate(['/app']);
       sessionStorage.setItem('token', JSON.stringify(result));
-      this.viewHome= false;
       this.viewLogin= true;
       this.notificationsService.info('Usuario correcto',  result.mensaje);
-      this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvenido al sistema'});
+        this.indicadorComponent.showSpinner(false);
+        this.messageService.add({severity:'success', summary: 'Bienvenido', detail: 'Bienvenido al sistema'});
     },error => {
+      this.indicadorComponent.showSpinner(false);
       this.messageService.add({severity: 'error', summary: 'Error', detail: 'Clave o usuario incorrecto'});
       console.log('Error');
      }
@@ -82,7 +83,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   cambio(){
     console.log('ingreso');
-    this.viewHome= false;
     this.viewLogin= true;
     this.router.navigate(['/sign']);
   }

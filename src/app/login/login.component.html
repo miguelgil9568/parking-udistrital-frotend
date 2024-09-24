@@ -1,4 +1,4 @@
-<div class=" d-flex justify-content-center align-items-center vh-100" *ngIf="viewHome">
+<div class=" d-flex justify-content-center align-items-center " style="height: 90vh !important;" >
   <div class="p-5 rounded-5 text-secondary shadow" style="width: 25rem">
     <form [formGroup]="formLogin">
       <div class="d-flex justify-content-center">
@@ -60,7 +60,4 @@
     </form>
   </div>
 </div>
-<p-toast></p-toast>
-<div *ngIf="viewLogin">
-  <router-outlet></router-outlet>
-</div>
+

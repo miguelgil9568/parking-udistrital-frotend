@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
 import {Router} from '@angular/router';
 import {UsuarioService} from '../../service/usuario.service';
@@ -15,32 +15,32 @@ export class SignInComponent implements OnInit {
 
   newUsuario: NewUsuario;
 
-  formRegister: FormGroup;
+  formRegister: UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private usuarioService: UsuarioService,
               private router: Router,
               private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
-      name: new FormControl('', [
+      name: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      password: new FormControl('', [
+      password: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      code: new FormControl('', [
+      code: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      phoneNumber: new FormControl('', [
+      phoneNumber: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),
-      email: new FormControl('', [
+      email: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
       ]),

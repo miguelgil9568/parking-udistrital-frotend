@@ -1,44 +1,33 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from '../login/login.component';
-import {HomeComponent} from '../home/home.component';
-import {UsuarioComponent} from '../usuario/usuario.component';
-import {DashboardComponent} from '../dashboard/dashboard.component';
+import {HomeComponent} from '../modules/users/pages/home/home.component';
+import {UsuarioComponent} from '../modules/users/pages/usuario/usuario.component';
+import {DashboardComponent} from '../modules/users/pages/dashboard/dashboard.component';
 import {SignInComponent} from '../sign-in/sign-in.component';
-import {ModificarUsuarioComponent} from '../usuario/modificar-usuario/modificar-usuario.component';
-import {VehiculoComponent} from '../vehiculo/vehiculo.component';
-import {NewVehiculoComponent} from '../vehiculo/new-vehiculo/new-vehiculo.component';
+import {ModificarUsuarioComponent} from '../modules/users/pages/usuario/modificar-usuario/modificar-usuario.component';
+import {VehiculoComponent} from '../modules/users/pages/vehiculo/vehiculo.component';
+import {NewVehiculoComponent} from '../modules/users/pages/vehiculo/new-vehiculo/new-vehiculo.component';
 import {RoleGuardService} from '../../service/role-guard.service';
-import {ParqueaderoComponent} from '../parqueadero/parqueadero.component';
+import {ParqueaderoComponent} from '../modules/users/pages/parqueadero/parqueadero.component';
+import {SessionGuard} from '../util/session.guard'
+import { SessionLoginGuard } from '../util/sessionLogin.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {path: 'login', component: LoginComponent, canActivate: [SessionLoginGuard]},
   {
-    path: 'app/dashboard', component: DashboardComponent,
-    children: [
-      {path: '', component: HomeComponent, outlet: 'rdash'},
-      {path: 'usuario', component: UsuarioComponent, outlet: 'rdash'},
-      {path: 'modusuario', component: ModificarUsuarioComponent,  outlet: 'rdash'},
-      {path: 'vehiculo', component: VehiculoComponent,  outlet: 'rdash'},
-      {path: 'modvehiculo', component: NewVehiculoComponent,  outlet: 'rdash'},
-      {path: 'parqueadero', component: ParqueaderoComponent, outlet: 'rdash'},
-      // {path: 'usuario-admin', component: CrearUsuarioAdminComponent, outlet: 'rdash'},
-      // {path: 'consultar-usuarios-admin', component: ConsultarUsuariosComponent, outlet: 'rdash'},
-      // {path: 'consultar-usuarios-entrega', component: ConsultarUsuariosEntregaComponent, outlet: 'rdash'},
-      // {path: 'consultar-entrega', component: ConsultarEntregaComponent, outlet: 'rdash'},
-      // {path: 'consultar-reporte', component: ReportesComponent, outlet: 'rdash'}
-    ],
-    data: {
-      roles: ['ROLE_USER']
-    }
+    path: 'app',
+    component: DashboardComponent,
+    loadChildren:() => import('src/app/modules/users/users.module').then(m => m.UsersModule),
+    canActivate: [SessionGuard]
   },
-  { path: 'sign', component: SignInComponent },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  {path: 'sign', component: SignInComponent, canActivate: [SessionLoginGuard]},
+  {path: '**', redirectTo: '/login', pathMatch: 'full'},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

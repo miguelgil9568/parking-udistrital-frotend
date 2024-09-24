@@ -17,7 +17,7 @@ export class ParqueaderoService {
   }
 
   findAll(): Observable<Parqueadero[]> {
-    return this.http.get<Parqueadero[]>(EndPointsConstants.URL_ENDPOINT + 'api/parking-lot').pipe(
+    return this.http.get<Parqueadero[]>(  EndPointsConstants.URL_ENDPOINT + 'api/parking-lot').pipe(
       tap(
         (success: any) => { return success;},
         error => {

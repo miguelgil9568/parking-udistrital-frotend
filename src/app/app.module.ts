@@ -3,7 +3,7 @@ import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {TableModule} from 'primeng/table';
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -14,7 +14,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {PasswordModule} from 'primeng/password';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './modules/users/pages/home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuModule } from 'primeng/menu';
 import {
@@ -27,18 +27,13 @@ import {
   SelectButtonModule, ToastModule, MessageService, CalendarModule
 } from 'primeng';
 import {FullCalendarModule} from 'primeng/fullcalendar';
-import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioComponent } from './modules/users/pages/usuario/usuario.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './modules/users/pages/dashboard/dashboard.component';
 import { TokenInterceptorService } from 'src/util/token-interceptor.interceptor';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ModificarUsuarioComponent } from './usuario/modificar-usuario/modificar-usuario.component';
-import { VehiculoComponent } from './vehiculo/vehiculo.component';
-import { NewVehiculoComponent } from './vehiculo/new-vehiculo/new-vehiculo.component';
-import { ConsultarVehiculoComponent } from './vehiculo/consultar-vehiculo/consultar-vehiculo.component';
-import { ConsultarUsuarioComponent } from './usuario/consultar-usuario/consultar-usuario.component';
-import { ParqueaderoComponent } from './parqueadero/parqueadero.component';
+import {UsersModule} from './modules/users/users.module';
 
 // ======= To get access token
 export function tokenGetter() {
@@ -51,28 +46,14 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
-    MenuComponent,
-    UsuarioComponent,
-    DashboardComponent,
-    SignInComponent,
-    ModificarUsuarioComponent,
-    VehiculoComponent,
-    NewVehiculoComponent,
-    ConsultarVehiculoComponent,
-    ConsultarUsuarioComponent,
-    ParqueaderoComponent
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     RouterModule,
-    BrowserModule,
     BrowserAnimationsModule,
     DropdownModule,
     ButtonModule,
@@ -80,7 +61,6 @@ export function tokenGetter() {
     InputTextareaModule,
     TableModule,
     HttpClientModule,
-    RouterModule,
     ReactiveFormsModule,
     PasswordModule,
     MenuModule,
@@ -100,14 +80,15 @@ export function tokenGetter() {
         tokenGetter: tokenGetter
       }
     }),
-    CalendarModule
-
+    CalendarModule,
+    UsersModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true},
-    MessageService
+    MessageService,
+    DatePipe
     ],
   bootstrap: [AppComponent]
 })
